@@ -4,29 +4,33 @@ angular.module('app.serviceModule')
 
 
 .service('CurrentPoiService', ['$q','$http','GrowlService', function ($q, $http, GrowlService) {
-    
-    this.poi=[];
+    this.pois=[]
+    this.poi;
     var self=this;
     this.fromJson=function(json)
     {
         for(j in json)
         {
-            self.poi.push(json[j]);
+            self.pois.push(json[j]);
         }
     }
     this.all_pois=function()
     {
-        console.log(self.poi);
+        return self.pois;
+    }
+    this.currentEvent=function()
+    {
         return self.poi;
     }
     this.getById=function(id)
     {
         console.log('id '+id);
-        for(p in self.poi)
+        for(p in self.pois)
             {
-                if(id==self.poi[p]._id)
+                if(id==self.pois[p]._id)
                 {
-                    return self.poi[p];    
+                    self.poi=self.pois[p];
+                    return self.poi;    
                 }
             }
         
