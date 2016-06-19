@@ -77,12 +77,13 @@ this.USER_FAVORITE_CHANGED   = "USER_FAVORITE_CHANGED";
    	{
 	  var deferred = $q.defer();
 	  var query = 'http://localhost:8080/api/users';
-	  $http.post(query, {'users':userInfo})
+	  $http.post(query, userInfo)
 		 .success(function(data, status, headers, config)
 		  	 {  	  
 			  	 var user      = data.result;
 		   	  	 _info._id     = user._id;
 		   	  	 _info.basic   = user.basic;
+                console.log(JSON.stringify(data.result));
 		   	  	 _islogged 	= true;
 		   	  	 GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
 		   	  	 console.log(JSON.stringify('Login avvenuto per: '+_info.basic.name +_info._id));
