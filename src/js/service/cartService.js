@@ -13,6 +13,7 @@ angular.module('app.serviceModule')
         .success(function(doc)
         {
           self.cart = doc.result;
+          console.log(JSON.stringify(self.cart));
           deferred.resolve(doc);
         })
         .error(function(doc, status, headers, config) 
@@ -23,25 +24,27 @@ angular.module('app.serviceModule')
         return deferred.promise; 	
 
     }
-    this.getCounter=function (id)
+    this.getCounter=function(id)
     {
         for (i in self.cart.prodotto)
         {
-            if (id ==self.cart.prodotto[i])
+            if (id ==self.cart.prodotto[i].details.idEvento)
             {
-                return self.cart.prodotto[i]details.quantita;
+                console.log(id);   
+                console.log(JSON.stringify(self.cart.prodotto[i].details.idEvento));
+                return self.cart.prodotto[i].details.quantita;
             }
                 
         }
-        
+
     }
-    this.addToCart(cart,userId)
+    this.addToCart=function(cart,userId)
     {
         var deferred = $q.defer();
-        console.log('id '+userId+' cart '+cart);
-        var query = 'http://localhost:8080/addEvent;
+        console.log('id '+userId+' cart '+JSON.stringify(cart));
+        var query = 'http://localhost:8080/addEvent';
         console.log(query);
-	   	$http.post(query, cart)
+	   	$http.post(query, {cart:cart.prodotto, userId:userId})
         .success(function(doc)
         {
           self.cart = doc.result;
@@ -49,7 +52,7 @@ angular.module('app.serviceModule')
         })
         .error(function(doc, status, headers, config) 
         {
-		  deferred.reject({'error':data, 'status':status});
+		  deferred.reject({'error':doc, 'status':status});
 		}
 		);
         return deferred.promise;

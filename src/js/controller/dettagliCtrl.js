@@ -20,7 +20,8 @@ angular.module('app')
     $("#phone").html('telefono '+self.poi.details.contact.phone);
     if(self.poi.details.price)
     {
-        self.prezzo=self.poi.details.price.prc_info;
+        //self.prezzo=self.poi.details.price.prc_info;
+        self.prezzo=50;
         $("#price").html(self.poi.details.price.prc_info);
     }
     else
@@ -40,6 +41,15 @@ angular.module('app')
         
         var poi    = self.poi;
         var quantita= CartService.getCounter(poi._id);
+        console.log('sono la quantita '+quantita);
+        if(quantita==null)
+            {
+                quantita=1;
+            }
+        else
+        {
+            quantita++;
+        }
         var cart=
             {
                 'prodotto':
@@ -55,7 +65,7 @@ angular.module('app')
                       'idEvento':poi._id,
                       'photo'   :poi.details['ph-primary'],
                       'price'   :self.prezzo,
-                      'quantita':qauntita+1
+                      'quantita':quantita
                     }
                 }]  
             };
