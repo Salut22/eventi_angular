@@ -14,9 +14,10 @@
                         <h5 div class="title" style="font-size:10px;">{{p.details.price.prc_info}}</h5>
                     </div>
                 </div>
+                <button ng-controller="dettagliCtrl as detCtrl" ng-click="detCtrl.search(p._id)">dettagli </button>
              </div>
             </div>
-            <button ng-controller="dettagliCtrl as detCtrl" ng-click="detCtrl.search(p._id)">dettagli</button>
+            
         </div>
     <div class="text-center hidden-md hidden-lg visible-sm-block visible-xs-block" style="color: white;">
         <div class="row">
