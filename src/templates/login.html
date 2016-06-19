@@ -1,0 +1,21 @@
+<div class="container">
+	<section class="content">
+		<form action="">
+			<h1>Login Welcome</h1>
+			<div>
+				<input type="text" placeholder="Username" required="" id="username" ng-model="lgnCtrl.username"/>
+			</div>
+			<div>
+				<input type="password" placeholder="Password" required="" id="password" ng-model="lgnCtrl.password"/>
+			</div>
+			<div>
+				<input type="submit" value="Log in" ng-click="lgnCtrl.save()" />
+				<a href="#">Lost your password?</a>
+				<a ui-sref="signup">Register</a>
+			</div>
+		</form>
+		<!--<div class="button">
+			<a href="#">Download source file</a>
+		</div>-->
+	</section> 
+</div>

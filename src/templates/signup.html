@@ -1,0 +1,402 @@
+
+<div class="container">
+	<section class="content">
+		<form action="">
+			<h1>Sign up</h1>
+			<div>
+                <h3>Nome</h3>
+                <input type="text" id="name" ng-model="sgnCtrl.nome" placeholder="Inserisci il nome..." required="">
+			</div>
+			<div>
+                <h3>Cognome</h3>
+                <input type="text" id="cognome" ng-model="sgnCtrl.cognome" placeholder="Inserisci il cognome..." required="">
+			</div>
+            <div>
+                <h3>Email</h3>
+                <input type="text" id="email" ng-model="sgnCtrl.email" placeholder="Inserisci l'indirizzo email..." required="">
+			</div>
+            <div>
+                <h3>Username</h3>
+                <input type="text"  id="username2" ng-model="sgnCtrl.username" placeholder="Inserisci username" required="">
+			</div> 
+            <div>
+                <h3>Password</h3>
+				<input type="password" id="password2" ng-model="sgnCtrl.password" required="">
+			</div>
+            <div>
+                <h3>Data di nascita</h3>
+				<input type="date" id="data" ng-model="sgnCtrl.data" required="">
+			</div>
+			<div>
+				<input type="submit" class="form-control" value="Sign Up" ng-click="sgnCtrl.save()" >
+			</div>
+		</form>
+		<!--<div class="button">
+			<a href="#">Download source file</a>
+		</div>-->
+	</section> 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<form action="progetto.html" method="POST">
+	<table>
+					          <tr>			
+                    <td>Nome:</td><td><input type="text" id="nome" name="nome" tiptitle="inserisci nome"/><br /></td>
+     				        </tr>
+     				        <tr>
+                    <td>Cognome:</td><td><input type="text" id="cognome" name="cognome"/><br /></td>
+                    </tr>
+                    <tr>      
+                    <td>Username:</td><td><input type="text" id="username" name="username" placeholder="nickname" /><br /></td>
+                    </tr>
+                    <tr>
+                    <td>Indirizzo:</td><td><input type="text" id="Indirizzo" name="indirizzo"/><br /></td>
+                    </tr>
+                    <tr>      
+                    <td>Citt&agrave:</td><td><input type="text" id="citta" name="citta" /><br /></td>
+                    <td>CAP:</td><td><input type="text" id="cap" name="cap" pattern="[0-9]{5}" size="5" maxlength="5" /><br /></td>
+                    </tr>
+                    <tr>			
+                    <td>Password:</td><td><input type="password" id="password2" name="password2" /><br /></td>
+     				        </tr>
+     				        <tr>
+                    <td>Conferma Password:</td><td><input type="password" id="confermaPass" name="confermaPass"/><br /></td>
+                    </tr>
+                    <tr>
+                    <td>Et&agrave:</td><td><input type="text" id="eta" name="eta"/><br /></td>
+                    </tr>
+                    <tr>
+                    <td>Sesso:</td><td><input type="radio" name="sesso" value="uomo" checked="checked">Uomo<input type="radio" name="sesso" value="donna">Donna<br /></td>
+                    </tr>
+                    <tr>
+                    <td>Codice Fiscale:</td><td><input type="text" id="codice" name="codice" pattern="[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]" / ><br /></td>
+                    </tr>
+                    <tr>
+                    <td>Titolo:</td><td>
+                    <select id="select" name="titolo">
+                                <option>Medie</option>
+                                <option>Superiori</option>
+                                <option>Laurea</option>
+                    </select><br /></td>
+                    </tr>
+                    <tr>
+                    <td>Luogo Nascita:</td><td><input type="text" id="luogo" name="luogo"/><br /></td>
+                    </tr>
+                    <tr>
+ 					<td>Data di nascita:</td><td>
+                        <select name=giorno id="giorno" size=1 value="">
+                          <option value="Giorno">Giorno</option>
+                          <option value="01">1</option>
+                          <option value="02">2</option>
+                          <option value="03">3</option>
+                          <option value="04">4</option>
+                          <option value="05">5</option>
+                          <option value="06">6</option>
+                          <option value="07">7</option>
+                          <option value="08">8</option>
+                          <option value="09">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                          <option value="13">13</option>
+                          <option value="14">14</option>
+                          <option value="15">15</option>
+                          <option value="16">16</option>
+                          <option value="17">17</option>
+                          <option value="18">18</option>
+                          <option value="19">19</option>
+                          <option value="20">20</option>
+                          <option value="21">21</option>
+                          <option value="22">22</option>
+                          <option value="23">23</option>
+                          <option value="24">24</option>
+                          <option value="25">25</option>
+                          <option value="26">26</option>
+                          <option value="27">27</option>
+                          <option value="28">28</option>
+                          <option value="29">29</option>
+                          <option value="30">30</option>
+                          <option value="31">31</option>
+                        </select>
+                        <select name=mese id="mese" size=1 value="">
+                          <option value="Mese">Mese</option>
+                          <option value="01">Gennaio</option>
+                          <option value="02">Febbraio</option>
+                          <option value="03">Marzo</option>
+                          <option value="04">Aprile</option>
+                          <option value="05">Maggio</option>
+                          <option value="06">Giugno</option>
+                          <option value="07">Luglio</option>
+                          <option value="08">Agosto</option>
+                          <option value="09">Settembre</option>
+                          <option value="10">Ottobre</option>
+                          <option value="11">Novembre</option>
+                          <option value="12">Dicembre</option>
+                        </select>
+  					<select name=anno id="anno" size=1 value="">
+                    <option value="Anno">Anno</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
+                    <option value="2009">2009</option>
+                    <option value="2008">2008</option>
+                    <option value="2007">2007</option>
+                    <option value="2006">2006</option>
+                    <option value="2005">2005</option>
+                    <option value="2004">2004</option>
+                    <option value="2003">2003</option>
+                    <option value="2002">2002</option>
+                    <option value="2001">2001</option>
+                    <option value="2000">2000</option>
+                    <option value="1999">1999</option>
+                    <option value="1998">1998</option>
+                    <option value="1997">1997</option>
+                    <option value="1996">1996</option>
+                    <option value="1995">1995</option>
+                    <option value="1994">1994</option>
+                    <option value="1993">1993</option>
+                    <option value="1992">1992</option>
+                    <option value="1991">1991</option>
+                    <option value="1990">1990</option>
+                    <option value="1989">1989</option>
+                    <option value="1988">1988</option>
+                    <option value="1987">1987</option>
+                    <option value="1986">1986</option>
+                    <option value="1985">1985</option>
+                    <option value="1984">1984</option>
+                    <option value="1983">1983</option>
+                    <option value="1982">1982</option>
+                    <option value="1981">1981</option>
+                    <option value="1980">1980</option>
+                    <option value="1979">1979</option>
+                    <option value="1978">1978</option>
+                    <option value="1977">1977</option>
+                    <option value="1976">1976</option>
+                    <option value="1975">1975</option>
+                    <option value="1974">1974</option>
+                    <option value="1973">1973</option>
+                    <option value="1972">1972</option>
+                    <option value="1971">1971</option>
+                    <option value="1970">1970</option>
+                    <option value="1969">1969</option>
+                    <option value="1968">1968</option>
+                    <option value="1967">1967</option>
+                    <option value="1966">1966</option>
+                    <option value="1965">1965</option>
+                    <option value="1964">1964</option>
+                    <option value="1963">1963</option>
+                    <option value="1962">1962</option>
+                    <option value="1961">1961</option>
+                    <option value="1960">1960</option>
+                    <option value="1959">1959</option>
+                    <option value="1958">1958</option>
+                    <option value="1957">1957</option>
+                    <option value="1956">1956</option>
+                    <option value="1955">1955</option>
+                    <option value="1954">1954</option>
+                    <option value="1953">1953</option>
+                    <option value="1952">1952</option>
+                    <option value="1951">1951</option>
+                    <option value="1950">1950</option>
+                    <option value="1949">1949</option>
+                    <option value="1948">1948</option>
+                    <option value="1947">1947</option>
+                    <option value="1946">1946</option>
+                    <option value="1945">1945</option>
+                    <option value="1944">1944</option>
+                    <option value="1943">1943</option>
+                    <option value="1942">1942</option>
+                    <option value="1941">1941</option>
+                    <option value="1940">1940</option>
+                    <option value="1939">1939</option>
+                    <option value="1938">1938</option>
+                    <option value="1937">1937</option>
+                    <option value="1936">1936</option>
+                    <option value="1935">1935</option>
+                    <option value="1934">1934</option>
+                    <option value="1933">1933</option>
+                    <option value="1932">1932</option>
+                    <option value="1931">1931</option>
+                    <option value="1930">1930</option>
+                    <option value="1929">1929</option>
+                    <option value="1928">1928</option>
+                    <option value="1927">1927</option>
+                    <option value="1926">1926</option>
+                    <option value="1925">1925</option>
+                    <option value="1924">1924</option>
+                    <option value="1923">1923</option>
+                    <option value="1922">1922</option>
+                    <option value="1921">1921</option>
+                    <option value="1920">1920</option>
+                    <option value="1919">1919</option>
+                    <option value="1918">1918</option>
+                    <option value="1917">1917</option>
+                    <option value="1916">1916</option>
+                    <option value="1915">1915</option>
+                    <option value="1914">1914</option>
+                    <option value="1913">1913</option>
+                    <option value="1912">1912</option>
+                    <option value="1911">1911</option>
+                    <option value="1910">1910</option>
+                    <option value="1909">1909</option>
+                    <option value="1908">1908</option>
+                    <option value="1907">1907</option>
+                    <option value="1906">1906</option>
+                    <option value="1905">1905</option>
+                    <option value="1904">1904</option>
+                    <option value="1903">1903</option>
+                    <option value="1902">1902</option>
+                    <option value="1901">1901</option>
+                    <option value="1900">1900</option>
+                    </select>
+                    <br /></td>
+                    </tr>
+                    <tr>
+                    <td>Mail:</td><td><input type="text" id="mail" name="mail"/><br /></td>
+                    </tr>
+                    <tr>
+                    <td>Consenso utilizzo dati:</td><td><input type="checkbox" id="c" name="c"/><br /></td>
+                    </tr>
+		</table>
+                    <input type="submit" value="Invia dati" onclick="return persona();" />
+                </form>
+<script type="application/javascript">
+	/*
+	creiamo la classe persona
+	*/
+	function persona(){
+		var nome = document.getElementById('nome').value;
+		var cognome = document.getElementById('cognome').value;
+		var eta = document.getElementById('eta').value;
+        var username = document.getElementById('username').value;
+        var indirizzo = document.getElementById('indirizzo').value;
+        var citta = document.getElementById('citta').value; 
+        var cap = document.getElementById('cap').value; 
+		var codice = document.getElementById('codice').value;
+		var luogo = document.getElementById('luogo').value;
+		var giorno = document.getElementById('giorno').value;
+		var mese = document.getElementById('mese').value;
+		var anno = document.getElementById('anno').value;
+		var mail = document.getElementById('mail').value;
+		var password2= document.getElementById('password2').value;
+		var confermaPass= document.getElementById('confermaPass').value;
+   /*
+	controlla che tutti i campi siano compilati
+   */
+   if(nome.trim() == '' || cognome.trim() == '' || codice.trim() == '' || giorno.trim() == '' || mese.trim() == ''|| anno.trim() == ''||password2.trim() == '' || confermaPass.trim() == ''){
+	alert ('i campi obbligatori non sono compilati');
+	return false;
+}
+ 		/*
+		* CONTROLLO CHE L'ETA SIA UN INTERO POSITIVO               
+		*/
+
+		if (password2!=confermaPass){
+			alert ('le password non coincidono');
+			return false;
+		}
+    if(password2.length <= 8){
+      alert("passwrdo troppo corta");
+      return false;
+    }
+    var numero=/[0-9]/;
+    var t=String(password2.match(numero));
+   if(t =='null' ){
+    alert('non contiene un nuemero');  
+    return false;
+    }
+    var lettera=/[A-Z]/;
+    var una=String(password2.match(lettera));
+    if(una =='null'){
+      alert('non ci sono lettere maiuscole');
+      return false;
+    }
+      
+    var chiocc=/^(.+)@([a-z]+)(.+)([a-z])$/;
+    var c=String(mail.match(chiocc));
+   if(c =='null' ){
+    alert('l indirizzo potrebbe non essere valido, si necessita di un indirizzo con user diviso da . una @ dominio . com Es tony.ciarrocchi@gmail.com');  
+    return false;
+    }
+		var ieta =parseInt(eta); //parseint converte in intero
+		if (isNaN(ieta)){ // se età è compilato
+			alert ('formato età non valido');
+			return false;
+		}
+		if (ieta < 0){
+			alert('l età deve essere maggiore di 0' );
+			return false;
+		}
+		var gg=parseInt(giorno);
+		var mm=parseInt(mese);
+		var aa = parseInt(anno);
+    switch (mm)
+    {
+      case 02;
+        maxGiorni=aa%4==0? 29 : 28;
+        alert('pppppp');
+        break;
+      default : maxGiorni=30;
+    }
+    document.getElementById('giorno').max =maxGiorni;
+
+		//var divisione = aa%4;
+		//if((mm==02 && gg>28 && divisione!=0 )|| (mm==02 && gg>29)){
+		//alert('anno inserito erroneamente');
+		//return false;
+		//}
+		if((mm==04 && gg>30 )|| (mm==06 && gg>30)|| (mm==09 && gg>30 )|| (mm==11 && gg>30)){
+		alert('errore');
+		return false;
+		}
+			if (document.getElementById('c').checked == false)  {
+             alert('Il consenso per l\'utilizzo dei dati personali non \u00E9 stato dato');
+           return false;
+                    }
+	return true;
+}
+  
+</script>-->
+
+            

@@ -1,0 +1,16 @@
+  <div class="content" ng-repeat="p in evnCtrl.pois" style="width:42%; height:42%; margin:20px; float:left;">
+        <div class="row">
+           <div class="col-sm-5">
+            <img ng-src="{{p.details['ph-primary']}}" style="max-width:60%; min-width:57%" >
+            </div>
+            <div class="col-sm-5">
+            <div class="card-info" style="float:right;">
+                <h3 div class="company">{{p.properties.title}}</h3>
+                <h4 div class="name">da: {{p.properties.dataFromFormatted}} a: {{p.properties.dateToFormatted}}</h4>
+                <h5 div class="title">{{p.details.price.prc_info}}</h5>
+            </div>
+                <button ng-controller="dettagliCtrl as detCtrl" ng-click="detCtrl.search(p._id)">dettagli</button>
+            </div>
+      <!--  </div>
+      <event ng-if="ciao" evento="ciao"></event>
+    </div>-->

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html  >
+  <head>
+    <meta charset="utf-8">
+
+      <!--
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">      
+      -->
+    
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+      
+    <!-- icons awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css"/>
+      
+  </head>
+<body ng-app="app">  
+
+
+<section id="main">
+    <div>
+        <ui-view></ui-view>
+        <!--<ng-view></ng-view>-->
+    </div>
+</section>
+<!------------------------------fine NavBar---------------------------->
+
+
+  <!-- ================== CONTENT PAGE  ============================== --> 
+   
+<!-- build:assets assets.min.js -->
+    
+<!-- JQuery --->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<!-- Angular core JavaScript-->        
+        <script src="https://code.angularjs.org/1.5.0/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.5.0/angular-route.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.min.js"></script>
+        <script src="https://code.angularjs.org/1.5.0/angular-animate.min.js"></script>
+        <script src="https://code.angularjs.org/1.5.0/angular-sanitize.min.js"></script>                    
+        <script src="https://code.angularjs.org/1.5.0/angular-touch.min.js"></script>
+        <script src="libs/autocomplete.js"></script>
+
+    <!-- MODULES -->
+    <script src="app.module.js"></script>
+    
+    <!--service-->
+    <script src="js/service/currentUser.js"></script>
+    <script src="js/service/growl.js"></script>
+    <script src="js/service/city.js"></script> 
+    <script src="js/service/currentPoi.js"></script> 
+    
+    <!--directive-->
+    <script src="js/directive/eventDirective.js"></script>
+    <!--notifiche-->
+    <script src="libs/bootstrap-notify.min.js"></script>         
+
+    
+    <!-- CONTROLLERS -->
+        <script src="js/controller/homeCtrl.js"></script>
+        <script src="js/controller/loginCtrl.js"></script>
+        <script src="js/controller/signupCtrl.js"></script>
+        <script src="js/controller/search.js"></script>
+        <script src="js/controller/eventiCtrl.js"></script>
+        <script src="js/controller/dettagliCtrl.js"></script>
+    <!-- / -->
+    
+  </body>
+</html>
