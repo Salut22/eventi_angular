@@ -1,8 +1,7 @@
 angular.module('app')
 
-.controller("signupCtrl" ,['$http','CurrentUserService', function ($http,CurrentUserService) {
+.controller("signupCtrl" ,['$http','CurrentUserService','$location', function ($http,CurrentUserService,$location) {
 var self = this;
-console.log("ziolalalala");
 
 var server = 'http://localhost:8080';
     
@@ -24,22 +23,14 @@ var server = 'http://localhost:8080';
         if(user.nome!=undefined && user.cognome!=undefined && user.email!=undefined && user.username != undefined && user.password != undefined && user.data != undefined) 
         {
         CurrentUserService.registerUser(user)
-        .then(function(data){
-           console.log(JSON.stringify(data));
-       })
-           /* var url=server+"/api/users";
-             $http.post(url,{'users':user})
-             .then(function(doc)
-               {
-                 console.log(doc);
-                 if(doc.data.result==true)
-                     {console.log("salvato")}
-                 else
-                     {
-                         console.log(doc.data.error);
-                     }
-               });  
-*/
+        .then(function(data)
+        {
+            $location.path('home');
+        })
+        .catch(function(err)
+        {
+            console.log(JSON.stringify(err));    
+        });
         }
     }
 }]);

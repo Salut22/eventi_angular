@@ -83,10 +83,8 @@ this.USER_FAVORITE_CHANGED   = "USER_FAVORITE_CHANGED";
 			  	 var user      = data.result;
 		   	  	 _info._id     = user._id;
 		   	  	 _info.basic   = user.basic;
-                console.log(JSON.stringify(data.result));
 		   	  	 _islogged 	= true;
 		   	  	 GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
-		   	  	 console.log(JSON.stringify('Login avvenuto per: '+_info.basic.name +_info._id));
 		   	  	 // cookie
 		   	  	 _setCookie();
 		   	  	 deferred.resolve(data);			  	 
