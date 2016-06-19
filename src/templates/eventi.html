@@ -1,16 +1,39 @@
-  <div class="content" ng-repeat="p in evnCtrl.pois" style="width:42%; height:42%; margin:20px; float:left;">
+<!--<div class="row">
+<div class=".col-sm-6" ng-repeat="p in eventCtrl.pois" style="width=49%" 500px    260px>-->
+<div class="section">
+    <div class="text-center hidden-sm hidden-xs visible-md-block visible-lg-block" style="color: white;">
         <div class="row">
-           <div class="col-sm-5">
-            <img ng-src="{{p.details['ph-primary']}}" style="max-width:60%; min-width:57%" >
+            <div class="content col-sm-6" ng-repeat="p in evnCtrl.pois" style="width:45%; height:360px; margin:3px; float:left; align-content:center; padding:3px;">
+                <div class="row" style="padding:10px;align-content:center;">
+                    <img ng-src="{{p.details['ph-primary']}}" style="width:175px;" >
+                </div>
+                <div class="row" style="margin:5px;align-content:center;">
+                    <div class="card-info" >
+                        <h3 div class="company" style="font-size:14px;">{{p.properties.title}}</h3>
+                        <h4 div class="name" style="font-size:12px;">da: {{p.properties.dataFromFormatted}} a: {{p.properties.dateToFormatted}}</h4>
+                        <h5 div class="title" style="font-size:10px;">{{p.details.price.prc_info}}</h5>
+                    </div>
+                </div>
+             </div>
             </div>
-            <div class="col-sm-5">
-            <div class="card-info" style="float:right;">
-                <h3 div class="company">{{p.properties.title}}</h3>
-                <h4 div class="name">da: {{p.properties.dataFromFormatted}} a: {{p.properties.dateToFormatted}}</h4>
-                <h5 div class="title">{{p.details.price.prc_info}}</h5>
-            </div>
+            <button ng-controller="dettagliCtrl as detCtrl" ng-click="detCtrl.search(p._id)">dettagli</button>
+        </div>
+    <div class="text-center hidden-md hidden-lg visible-sm-block visible-xs-block" style="color: white;">
+        <div class="row">
+            <div class="content col-sm-6" ng-repeat="p in evnCtrl.pois" style="width:45%; height:300px; margin:4px; float:left; align-content:center;">
+                
+                <div class="row" style="padding:5px;align-content:center;">
+                    <img ng-src="{{p.details['ph-primary']}}" style="width:85px" >
+                </div>
+                <div class="row" style="margin:5px;align-content:center;">
+                    <div class="card-info">
+                        <h3 div class="company" style="font-size:14px;">{{p.properties.title}}</h3>
+                        <h4 div class="name" style="font-size:12px;">da: {{p.properties.dataFromFormatted}} a: {{p.properties.dateToFormatted}}</h4>
+                        <h5 div class="title" style="font-size:10px;">{{p.details.price.prc_info}}</h5>
+                    </div>
+                </div>
+             </div>
+        </div>
                 <button ng-controller="dettagliCtrl as detCtrl" ng-click="detCtrl.search(p._id)">dettagli</button>
-            </div>
-      <!--  </div>
-      <event ng-if="ciao" evento="ciao"></event>
-    </div>-->
+    </div>
+</div>
