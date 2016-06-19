@@ -1,32 +1,33 @@
 <div>
+    <div >
+    <img id="foto" ng-src="{{detCtrl.poi.details['ph-primary']}}" >
+    </div>
     <div class="panel panel-default">
         <div class="panel-heading">informazioni</div>
         <div class="panel-body" >
-            <input type="text" ng-model="detCtrl.up._id" />
-            <p ng-model="detCtrl.up._id">{{detCtrl.up._id}}</p>
-            <p>{{detCtrl.poi.details.address.street}}</p>
-            <p>{{detCtrl.up.details.address.city}}</p>
-            <p>{{detCtrl.up.details.address.country}}</p>
+            <p id="title"></p>
+            <p id="city"></p>
+            <p id="street"></p>
+            <p id="dateFrom"></p>
+            <p id="dateTo"></p>
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">Panel Heading</div>
-        <div class="panel-body">Panel Content</div>
+        <div class="panel-heading">contatti</div>
+        <div class="panel-body">            
+            <p id="email"></p>  
+            <p id="website"></p>  
+            <p id="phone"></p>
+        </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">Panel Heading</div>
-        <div class="panel-body">Panel Content</div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">Panel Heading</div>
-        <div class="panel-body">Panel Content</div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">Panel Heading</div>
-        <div class="panel-body">Panel Content</div>
+        <div class="panel-heading">prezzi</div>
+        <div class="panel-body">
+            <p id="price"></p>
+        </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">descrizione</div>
-        <div class="panel-body">{{detCtrl.up.details.desc}}</div>
+        <div class="panel-body"><p id="desc"></p></div>
     </div>
 </div>
