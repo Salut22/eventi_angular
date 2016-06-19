@@ -165,6 +165,8 @@ form:after {
 #cognome  { background-position: 10px 10px !important }
 #email    { background-position: 100px 100px !important }
 #data     { background-position: 100px 100px !important }    
+#da       { background-position: 100px 100px !important }    
+#a        { background-position: 100px 100px !important }    
 #password { background-position: 10px -53px !important }
 #password2{ background-position: 10px -53px !important }
 

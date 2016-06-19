@@ -1,11 +1,15 @@
 <!--<div class="row">
+
 <div class=".col-sm-6" ng-repeat="p in eventCtrl.pois" style="width=49%" 500px    260px>-->
+<style>.footer {
+	display: table-row;
+}</style>
 <div class="section">
     <div class="text-center hidden-sm hidden-xs visible-md-block visible-lg-block" style="color: white;">
         <div class="row">
             <div class="content col-sm-6" ng-repeat="p in evnCtrl.pois" style="width:45%; height:360px; margin:3px; float:left; align-content:center; padding:3px;">
                 <div class="row" style="padding:10px;align-content:center;">
-                    <img ng-src="{{p.details['ph-primary']}}" style="width:175px;" >
+                    <img ng-src="{{p.details['ph-primary']}}" style="width:175px;" class="img-thumbnail;img-responsive">
                 </div>
                 <div class="row" style="margin:5px;align-content:center;">
                     <div class="card-info" >
@@ -14,17 +18,20 @@
                         <h5 div class="title" style="font-size:10px;">{{p.details.price.prc_info}}</h5>
                     </div>
                 </div>
-                <button ng-controller="dettagliCtrl as detCtrl" ng-click="detCtrl.search(p._id)">dettagli </button>
-             </div>
+                <footer class="panel-footer" style="margin-top:px">
+                    <button class="footer btn btn-block" ng-controller="dettagliCtrl as detCtrl" ng-click="detCtrl.search(p._id)">dettagli</button> 
+                </footer>
+            
             </div>
             
+            </div>
         </div>
     <div class="text-center hidden-md hidden-lg visible-sm-block visible-xs-block" style="color: white;">
         <div class="row">
             <div class="content col-sm-6" ng-repeat="p in evnCtrl.pois" style="width:45%; height:300px; margin:4px; float:left; align-content:center;">
                 
                 <div class="row" style="padding:5px;align-content:center;">
-                    <img ng-src="{{p.details['ph-primary']}}" style="width:85px" >
+                    <img ng-src="{{p.details['ph-primary']}}" style="width:85px" class="img-thumbnail;img-responsive">
                 </div>
                 <div class="row" style="margin:5px;align-content:center;">
                     <div class="card-info">
@@ -33,8 +40,11 @@
                         <h5 div class="title" style="font-size:10px;">{{p.details.price.prc_info}}</h5>
                     </div>
                 </div>
+                <footer class="panel-footer" style="margin-top:px">
+                    <button class="footer btn btn-block" ng-controller="dettagliCtrl as detCtrl" ng-click="detCtrl.search(p._id)">dettagli</button> 
+                </footer>
              </div>
         </div>
-                <button ng-controller="dettagliCtrl as detCtrl" ng-click="detCtrl.search(p._id)">dettagli</button>
+                
     </div>
 </div>
