@@ -83,6 +83,7 @@ angular.module('app.serviceModule')
 		);
         return deferred.promise;
     }
+    
     this.deleteToCart=function(userId, eventId)
     {
         var deferred = $q.defer();
