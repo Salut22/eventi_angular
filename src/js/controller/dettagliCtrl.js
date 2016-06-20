@@ -82,8 +82,12 @@ angular.module('app')
         console.log('sono la quantita '+quantita);
             
         quantita--;
-        
-        if(quantita==0)
+        if(quantita<0)
+        {
+            GrowlService.showAlert(GrowlService.ALERT_ERROR, "L'evento non è nel carrello");
+            return;
+        }
+        else if(quantita==0)
         {
             CartService.deleteToCart(self.userId, self.poi._id);
             GrowlService.showAlert(GrowlService.ALERT_INFO, "evento eliminato dal carrello");
