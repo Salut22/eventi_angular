@@ -31,7 +31,7 @@ function($stateProvider, $urlRouterProvider,$httpProvider) {
     })
  .state('loadEvent', {
      url: '/admin/loadEvent',
-     templateUrl: 'templates/load.html',
+     templateUrl: 'templates/admin.html',
      controller: 'adminCtrl as admCtrl'
     })
  .state('eventi', {
