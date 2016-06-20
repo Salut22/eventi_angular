@@ -2,7 +2,7 @@
 <div class="panel panel-default" ng-repeat="c in cartCtrl.cart.prodotto" >
         <div class="panel-heading">informazioni</div>
         <div class="panel-body" >
-            <input style="align:right;"type="number" ng-model="c.details.quantita"ng-change="cartCtrl.sum()" />
+            <input style="align:right;"type="number" ng-model="c.details.quantita"ng-change="cartCtrl.sum()" min="0"/>
             <p >{{c.properties.title}}</p>
             <p >{{c.details.price}}</p>
             
@@ -12,5 +12,7 @@
     {{c.details.price*c.details.quantita}}
     </div>
 <div>
-{{cartCtrl.somma}}
+    <div ng-if="cartCtrl.somma==0">Sono tutti eventi gratuiti</div>
+<div ng-if="cartCtrl.somma!=0"> {{cartCtrl.somma}}
+</div> 
 </div>
