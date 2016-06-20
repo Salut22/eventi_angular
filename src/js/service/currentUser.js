@@ -3,7 +3,7 @@ angular.module('app.serviceModule')
 
 
 
-.service('CurrentUserService', ['$q','$http','GrowlService','CartService', function ($q, $http, GrowlService,CartService) 
+.service('CurrentUserService', ['$q','$http','GrowlService','CartService','$rootScope', function ($q, $http, GrowlService,CartService,$rootScope) 
   {   // initialization
     var self = this;
     var _islogged  = false;
@@ -18,11 +18,10 @@ angular.module('app.serviceModule')
 /* ========================================
     EVENTS FIRED
 ================================================*/
-/*this.USER_LOGGED_IN_EVENT    = "USER_LOGGED_IN_EVENT";
+this.USER_LOGGED_IN_EVENT    = "USER_LOGGED_IN_EVENT";
 this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
-this.USER_BASIC_INFO_CHANGED = "USER_BASIC_INFO_CHANGED";
-this.USER_FAVORITE_CHANGED   = "USER_FAVORITE_CHANGED";
-*/
+
+
    	
  
  // AT THE BOTTOM, THERE IS THE CALL TO _getCookie() FOR THE INITIALIZATION
@@ -89,6 +88,7 @@ this.USER_FAVORITE_CHANGED   = "USER_FAVORITE_CHANGED";
 		   	  	 GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
 		   	  	 // cookie
 		   	  	 _setCookie();
+                 $rootScope.$broadcast(self.USER_LOGGED_IN_EVENT);
 		   	  	 deferred.resolve(data);			  	 
 		  	 })
 	     .error(function(data, status, headers, config) 
@@ -124,6 +124,7 @@ this.USER_FAVORITE_CHANGED   = "USER_FAVORITE_CHANGED";
 			   	  	GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
 			   	  	 // cookie
 			   	  	 _setCookie();
+                     $rootScope.$broadcast(self.USER_LOGGED_IN_EVENT);
 			   	  	 deferred.resolve(true);
 		   	  	   } 
 		   	     else
@@ -155,6 +156,7 @@ this.USER_FAVORITE_CHANGED   = "USER_FAVORITE_CHANGED";
    		{ 
 	   	 _resetUser();
 	   	 _setCookie(-1);  // delete the cookie
+        $rootScope.$broadcast(self.USER_LOGGED_OUT_EVENT);
         GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'logout avvenuto');
 	     };    		
 	
@@ -211,6 +213,7 @@ this.USER_FAVORITE_CHANGED   = "USER_FAVORITE_CHANGED";
 	   _info = cookie;
     CartService.getById(cookie._id);
 _islogged  = true; 
+        $rootScope.$broadcast(self.USER_LOGGED_IN_EVENT);
         GrowlService.showAlert(GrowlService.ALERT_SUCCESS, _info.basic.name+' ha loggato con il cookie');
        
   	}		  	 		  		
