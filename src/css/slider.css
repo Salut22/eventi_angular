@@ -1,0 +1,172 @@
+/* slider */
+
+.sp-slideshow {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    min-width: 100%;    
+}
+/*Primo sfondo della sezione Home*/
+.sp-content {
+    position: relative;
+    width: 100%;
+    /* background-size: cover; */
+    height: 100%;
+    overflow: hidden;
+    background-position: center left;
+}  
+.sp-slideshow input {
+    position: absolute;
+/*    bottom: 15px;*/
+    left: 50%;
+    width: 9px;
+    height: 9px;
+    z-index: 1001;
+    cursor: pointer;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+.sp-selector-1, .button-label-1 {
+    margin-left: -36px;
+}
+.sp-selector-2, .button-label-2 {
+    margin-left: -18px;
+}
+.sp-selector-4, .button-label-4 {
+    margin-left: 18px;
+}
+.sp-selector-5, .button-label-5 {
+    margin-left: 36px;
+}
+.sp-arrow {
+    position: absolute;
+    top: 50%;
+    width: 28px;
+    height: 38px;
+    margin-top: -19px;
+    display: none;
+    opacity: 0.8;
+    cursor: pointer;
+    z-index: 1000;
+    background: transparent url(./arrows/arrows.png) no-repeat;
+}
+.sp-arrow:hover{
+    opacity: 1;
+}
+.sp-arrow:active{
+    margin-top: -18px;
+}
+.sp-selector-1:checked ~ .sp-arrow.sp-a2,
+.sp-selector-2:checked ~ .sp-arrow.sp-a3,
+.sp-selector-3:checked ~ .sp-arrow.sp-a4,
+.sp-selector-4:checked ~ .sp-arrow.sp-a5 {
+    right: 15px;
+    display: block;
+    background-position: top right;
+}
+.sp-selector-2:checked ~ .sp-arrow.sp-a1,
+.sp-selector-3:checked ~ .sp-arrow.sp-a2,
+.sp-selector-4:checked ~ .sp-arrow.sp-a3,
+.sp-selector-5:checked ~ .sp-arrow.sp-a4 {
+    left: 15px;
+    display: block;
+    background-position: top left;
+}
+.sp-slideshow input:checked ~ .sp-content {
+    -webkit-transition: background-position linear 0.6s, background-color linear 0.8s;
+    -moz-transition: background-position linear 0.6s, background-color linear 0.8s;
+    -o-transition: background-position linear 0.6s, background-color linear 0.8s;
+    -ms-transition: background-position linear 0.6s, background-color linear 0.8s;
+    transition: background-position linear 0.6s, background-color linear 0.8s;
+}
+.sp-slideshow input:checked ~ .sp-content .sp-parallax-bg {
+    -webkit-transition: background-position linear 0.7s;
+    -moz-transition: background-position linear 0.7s;
+    -o-transition: background-position linear 0.7s;
+    -ms-transition: background-position linear 0.7s;
+    transition: background-position linear 0.7s;
+}
+input.sp-selector-1:checked ~ .sp-content {
+    background-position: 0 0;
+}
+input.sp-selector-2:checked ~ .sp-content {
+    background-position: -100px 0;
+}
+input.sp-selector-3:checked ~ .sp-content {
+    background-position: -200px 0;
+}
+
+input.sp-selector-4:checked ~ .sp-content {
+    background-position: -300px 0;
+}
+
+input.sp-selector-5:checked ~ .sp-content {
+    background-position: -400px 0;
+}
+
+input.sp-selector-1:checked ~ .sp-content .sp-parallax-bg {
+    background-position: 0 0;
+}
+
+input.sp-selector-2:checked ~ .sp-content .sp-parallax-bg {
+    background-position: -200px 0;
+}
+
+input.sp-selector-3:checked ~ .sp-content .sp-parallax-bg {
+    background-position: -400px 0;
+}
+
+input.sp-selector-4:checked ~ .sp-content .sp-parallax-bg {
+    background-position: -600px 0;
+}
+
+input.sp-selector-5:checked ~ .sp-content .sp-parallax-bg {
+    background-position: -800px 0;
+}
+.sp-slider {
+    position: relative;
+    left: 0;
+    width: 500%;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.sp-slider > li {
+    width: 20%;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+.sp-slider > li img{
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+}
+input.sp-selector-1:checked ~ .sp-content .sp-slider {
+    left: 0;
+}
+input.sp-selector-2:checked ~ .sp-content .sp-slider {
+    left: -100%;
+}
+input.sp-selector-3:checked ~ .sp-content .sp-slider {
+    left: -200%;
+}
+input.sp-selector-4:checked ~ .sp-content .sp-slider {
+    left: -300%;
+}
+input.sp-selector-5:checked ~ .sp-content .sp-slider {
+    left: -400%;
+}
+input.sp-selector-1:checked ~ .sp-content .sp-slider > li:first-child,
+input.sp-selector-2:checked ~ .sp-content .sp-slider > li:nth-child(2),
+input.sp-selector-3:checked ~ .sp-content .sp-slider > li:nth-child(3),
+input.sp-selector-4:checked ~ .sp-content .sp-slider > li:nth-child(4),
+input.sp-selector-5:checked ~ .sp-content .sp-slider > li:nth-child(5){
+    opacity: 1;
+}
+.slidersection {
+  display: block;
+  border: 3px;
+}

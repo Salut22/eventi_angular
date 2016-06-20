@@ -215,7 +215,7 @@ form:after {
     margin: 30px 15px 0 0;
     text-decoration: underline;
 }
-.button {
+/*.button {
 	background: rgb(247,249,250);
 	background: -moz-linear-gradient(top,  rgba(247,249,250,1) 0%, rgba(240,240,240,1) 100%);
 	background: -webkit-linear-gradient(top,  rgba(247,249,250,1) 0%,rgba(240,240,240,1) 100%);
@@ -251,7 +251,7 @@ form:after {
 .button a:hover {
 	background-position: 0 -135px;
 	color: #00aeef;
-}
+}*/
 /* AUTOCOMPLETE */
 
 .autocomplete{
