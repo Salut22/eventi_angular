@@ -34,7 +34,6 @@ angular.module('app.serviceModule')
                 self.cart = doc.result;
               }
           
-          console.log(JSON.stringify(self.cart));
           deferred.resolve(self.cart);
         })
         .error(function(doc, status, headers, config) 
@@ -50,12 +49,9 @@ angular.module('app.serviceModule')
         
         for (i in self.cart.prodotto)
         {
-            console.log(JSON.stringify(self.cart.prodotto[i]));
 
             if (id ==self.cart.prodotto[i].details.idEvento)
             {
-                console.log(id);   
-                console.log(JSON.stringify(self.cart.prodotto[i].details.idEvento));
                 return self.cart.prodotto[i].details.quantita;
             }
                 

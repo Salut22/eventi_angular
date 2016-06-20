@@ -11,20 +11,16 @@ angular.module('app.directiveModule')
             this.basicUser;
             this.user;
             var self = this;
-            $rootScope.$on(CurrentUserService.USER_LOGGED_IN_EVENT, function ()
-            {
-                self.user= CurrentUserService.isLogged();
-                if(self.user==true)
 
-                {
-                 var id = CurrentUserService.getUserId();
+           this.update=function()
+           {
+              var id = CurrentUserService.getUserId();
                  self.basicUser = CurrentUserService.getBasicInfo(id);
-                }  
-            })
-
+           }
+         
+                
             this.logout=function()
             {
-             self.user = false;
              return CurrentUserService.setLoggedOut();
             }
             
