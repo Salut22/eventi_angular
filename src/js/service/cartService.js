@@ -63,12 +63,9 @@ angular.module('app.serviceModule')
         
         for (i in self.cart.prodotto)
         {
-            console.log(JSON.stringify(self.cart.prodotto[i]));
 
             if (id ==self.cart.prodotto[i].details.idEvento)
             {
-                console.log(id);   
-                console.log(JSON.stringify(self.cart.prodotto[i].details.idEvento));
                 return self.cart.prodotto[i].details.quantita;
             }
                 

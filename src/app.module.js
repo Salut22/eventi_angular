@@ -50,4 +50,3 @@ function($stateProvider, $urlRouterProvider,$httpProvider) {
   
 
 }])
-

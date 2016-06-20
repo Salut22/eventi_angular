@@ -86,9 +86,8 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
                  CartService.getById(user._id);
 
 		   	  	 GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
-		   	  	 // cookie
+$rootScope.titolo = _islogged;		   	  	 // cookie
 		   	  	 _setCookie();
-                 $rootScope.$broadcast(self.USER_LOGGED_IN_EVENT);
 		   	  	 deferred.resolve(data);			  	 
 		  	 })
 	     .error(function(data, status, headers, config) 
@@ -122,9 +121,9 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
                      _info.token   = data.token;
                      _islogged 	= true;
 			   	  	GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
-			   	  	 // cookie
+$rootScope.titolo = _islogged;			   	  	 // cookie
 			   	  	 _setCookie();
-                     $rootScope.$broadcast(self.USER_LOGGED_IN_EVENT);
+                     
 			   	  	 deferred.resolve(true);
 		   	  	   } 
 		   	     else
@@ -156,7 +155,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
    		{ 
 	   	 _resetUser();
 	   	 _setCookie(-1);  // delete the cookie
-        $rootScope.$broadcast(self.USER_LOGGED_OUT_EVENT);
+	   $rootScope.titolo = _islogged;
         GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'logout avvenuto');
 	     };    		
 	
@@ -200,7 +199,8 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 		}   
 		
 		
-		
+	        $rootScope.titolo = _islogged;
+	
 		
 /* ========================================
     INITIALIZATION OF THE USER IF STORED AS COOKIE
@@ -213,7 +213,9 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 	   _info = cookie;
     CartService.getById(cookie._id);
 _islogged  = true; 
-        $rootScope.$broadcast(self.USER_LOGGED_IN_EVENT);
+       // $rootScope.$broadcast(self.USER_LOGGED_IN_EVENT);
+        $rootScope.titolo = _islogged;
+        console.log(self.USER_LOGGED_IN_EVENT);
         GrowlService.showAlert(GrowlService.ALERT_SUCCESS, _info.basic.name+' ha loggato con il cookie');
        
   	}		  	 		  		
@@ -221,4 +223,27 @@ _islogged  = true;
     
 }])
 
+//.run(function(CurrentUserService) {}
 .run(function(CurrentUserService) {});
+  //  console.log("porco mondo"+ self._isLogged);
+//
+//    $rootScope.$on(CurrentUserService.USER_LOGGED_IN_EVENT, function()
+//    {
+//        console.log("porcomondo 23 232");
+//    });
+//    $rootScope.$on(CurrentUserService.USER_LOGGED_OUT_EVENT, function()
+//    {
+//        console.log("porcomondo 23 232 fhidhfihfiwe");
+//    });
+//    $rootScope.$on(CurrentUserService.USER_LOGGED_IN_EVENT, function()
+//            {
+//                console.log("ziolatro");
+//                self.user= CurrentUserService.isLogged();
+//                if(self.user==true)
+//
+//                {
+//                 var id = CurrentUserService.getUserId();
+//                 self.basicUser = CurrentUserService.getBasicInfo(id);
+//                }  
+//            })
+//});
