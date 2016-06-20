@@ -20,12 +20,16 @@ angular.module('app.serviceModule')
                 }]  
                 };
     var self = this;
+      
+      this.getAllCart=function()
+      {
+          return self.cart;
+      }
+      
     this.getById=function(id)
     {
         var deferred = $q.defer();
-        console.log('id '+id);
         var query = 'http://localhost:8080/getCart/'+id;
-        console.log(query);
 	   	$http.get(query)
         .success(function(doc)
         {
@@ -34,7 +38,6 @@ angular.module('app.serviceModule')
                 self.cart = doc.result;
               }
           
-          console.log(JSON.stringify(self.cart));
           deferred.resolve(self.cart);
         })
         .error(function(doc, status, headers, config) 
@@ -44,6 +47,16 @@ angular.module('app.serviceModule')
 		);
         return deferred.promise; 	
 
+    }
+    
+    this.getProduct=function()
+    {var c=0;
+        for(i in self.cart.prodotto)
+        {
+            console.log(self.cart.prodotto[i].properties.title);
+           c++; 
+        }
+     return c;
     }
     this.getCounter=function(id)
     {

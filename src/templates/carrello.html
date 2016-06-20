@@ -1,0 +1,9 @@
+
+<div class="panel panel-default" ng-repeat="c in cartCtrl.cart.prodotto">
+        <div class="panel-heading">informazioni</div>
+        <div class="panel-body" >
+            <input style="align:right;"type="number" ng-model="c.details.quantita" />
+            <p >{{c.properties.title}}</p>
+            <p >{{c.details.price}}</p>
+             </div>
+    </div>
