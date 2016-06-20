@@ -42,14 +42,9 @@ angular.module('app')
         var poi    = self.poi;
         var quantita= CartService.getCounter(poi._id);
         console.log('sono la quantita '+quantita);
-        if(quantita==null)
-            {
-                quantita=1;
-            }
-        else
-        {
-            quantita++;
-        }
+            
+        quantita++;
+        
         var cart=
             {
                 'prodotto':

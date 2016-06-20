@@ -13,7 +13,7 @@ var server = 'http://localhost:8080';
             'username' :this.username,
             'password' :this.password
         };
-        
+        console.log(JSON.stringify(user));
        CurrentUserService.setLoggedIn(user)
        .then(function(data)
         {
@@ -22,6 +22,7 @@ var server = 'http://localhost:8080';
        })
        .catch(function(err){console.log(err)})
        .then(function (data){
+           
            var User_id = CurrentUserService.getUserId();
            console.log(User_id);
            CartService.getById(User_id)
