@@ -3,7 +3,7 @@ angular.module('app.serviceModule')
 
 
 
-.service('CurrentUserService', ['$q','$http','GrowlService', function ($q, $http, GrowlService) 
+.service('CurrentUserService', ['$q','$http','GrowlService','CartService', function ($q, $http, GrowlService,CartService) 
   {   // initialization
     var self = this;
     var _islogged  = false;
@@ -84,6 +84,8 @@ this.USER_FAVORITE_CHANGED   = "USER_FAVORITE_CHANGED";
 		   	  	 _info._id     = user._id;
 		   	  	 _info.basic   = user.basic;
 		   	  	 _islogged 	= true;
+                 CartService.getById(user._id);
+
 		   	  	 GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
 		   	  	 // cookie
 		   	  	 _setCookie();
@@ -205,8 +207,10 @@ this.USER_FAVORITE_CHANGED   = "USER_FAVORITE_CHANGED";
    cookie = _getCookie();
   if (cookie != false && !_islogged)
   	{
-	   _info = JSON.parse(cookie); 
-	   _islogged  = true; 
+      cookie=JSON.parse(cookie);
+	   _info = cookie;
+    CartService.getById(cookie._id);
+_islogged  = true; 
         GrowlService.showAlert(GrowlService.ALERT_SUCCESS, _info.basic.name+' ha loggato con il cookie');
        
   	}		  	 		  		

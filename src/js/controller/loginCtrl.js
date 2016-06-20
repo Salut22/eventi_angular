@@ -27,7 +27,8 @@ var server = 'http://localhost:8080';
            console.log(User_id);
            CartService.getById(User_id)
            .then(function(cart){
-            console.log(cart);
+            $location.path("home");
+
            })
            .catch(function(err){
             console.log(err);
@@ -35,7 +36,6 @@ var server = 'http://localhost:8080';
             
        })
           
-        //$location.path("home");
         
        
        

@@ -39,7 +39,7 @@ angular.module('app.serviceModule')
         })
         .error(function(doc, status, headers, config) 
         {
-		  deferred.reject({'error':data, 'status':status});
+		  deferred.reject({'error':doc, 'status':status});
 		}
 		);
         return deferred.promise; 	
@@ -83,6 +83,7 @@ angular.module('app.serviceModule')
 		);
         return deferred.promise;
     }
+    
     this.deleteToCart=function(userId, eventId)
     {
         var deferred = $q.defer();
