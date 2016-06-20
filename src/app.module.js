@@ -39,10 +39,17 @@ function($stateProvider, $urlRouterProvider,$httpProvider) {
      templateUrl: 'templates/eventi.html',
      controller: 'eventiCtrl as evnCtrl'
 
-    }).state('dettagli', {
+    })
+.state('dettagli', {
      url: '/dettagli',
      templateUrl: 'templates/dettagli.html',
      controller: 'dettagliCtrl as detCtrl'
+
+    })
+.state('carrello', {
+     url: '/carrello',
+     templateUrl: 'templates/carrello.html',
+     controller: 'CartCtrl as cartCtrl'
 
     })
 

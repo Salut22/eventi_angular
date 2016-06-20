@@ -79,7 +79,7 @@ angular.module('app.serviceModule')
         var deferred = $q.defer();
         console.log('id '+userId+' cart '+JSON.stringify(cart));
         var query = 'http://localhost:8080/addEvent';
-        console.log(query);
+        console.log(cart);
 	   	$http.post(query, {cart:cart.prodotto, userId:userId})
         .success(function(doc)
         {

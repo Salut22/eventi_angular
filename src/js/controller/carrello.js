@@ -1,72 +1,95 @@
 angular.module('app')
 
-.controller("CartCtrl" ,['$http','CartService','$location', function ($http,CartService,$location) 
+.controller("CartCtrl" ,['$http','CartService','CurrentUserService','GrowlService','$location', function ($http,CartService,CurrentUserService,GrowlService,$location) 
 {
-    this.cart=CartService.getAllCart();
+    this.cart;
+    this.somma=0;
+    this.userId=CurrentUserService.getUserId();
+
     var self=this;
+    self.cart=CartService.getAllCart();
+
     console.log(self.cart.prodotto[0].details.quantita);
     
-    this.removeToCart=function()
+    this.sum=function()
     {
+        self.somma=0;
+        for(c in self.cart.prodotto)
+        {
+          self.somma+=(self.cart.prodotto[c].details.quantita*self.cart.prodotto[c].details.price); 
+        }
         
-        var poi    = self.poi;
-        var quantita= CartService.getCounter(poi._id);
-        console.log('sono la quantita '+quantita);
-            
-        quantita--;
-        if(quantita<0)
-        {
-            GrowlService.showAlert(GrowlService.ALERT_ERROR, "L'evento non è nel carrello");
-            return;
-        }
-        else if(quantita==0)
-        {
-            CartService.deleteToCart(self.userId, self.poi._id);
-            GrowlService.showAlert(GrowlService.ALERT_INFO, "evento eliminato dal carrello");
-            return;
-        }
-            
-        var cart=
-            {
-                'prodotto':
-                [{
-                    'properties':
-                    {
-                      'title'   :poi.properties.title,
-                      'dateFrom':poi.properties.dateFrom,
-                      'dateTo'  :poi.properties.dateTo
-                    },
-                    'details':
-                    {
-                      'idEvento':poi._id,
-                      'photo'   :poi.details['ph-primary'],
-                      'price'   :self.prezzo,
-                      'quantita':quantita
-                    }
-                }]  
-            };
-        CartService.addToCart(cart,self.userId)
-        .then(function(data)
-        {
-          console.log('aggiunto con successo');    
-        })
-        .catch(function(err)
-        {
-            console.log(err);    
-        });
     }
-    this.deleteToCart=function()
+    self.sum();
+    
+    this.update=function()
     {
-        CartService.deleteToCart(self.userId,self.poi._id)
+        console.log('update');
+        CartService.getById(self.userId)
         .then(function(data)
         {
-            console.log('evento cancellato dal carrello');   
+            console.log(JSON.stringify(data));
+            self.cart=data;
+    })
+        
+        
+    }
+
+    this.removeToCart=function(id,quantita)
+    {
+     if(quantita==0)
+        {
+
+            CartService.deleteToCart(self.userId, id)
+            .then(function(data)
+            {
+                self.update();
+                GrowlService.showAlert(GrowlService.ALERT_INFO, "evento eliminato dal carrello");
+                
+            })
+            .catch(function(err)
+            {
+              console.log(err);  
+            })
+         }
+          for(c in self.cart.prodotto)
+          {
+              if(id == self.cart.prodotto[c].details.idEvento)
+                {
+                    self.cart.prodotto[c].details.quantita=quantita;
+                    cart={'prodotto':[self.cart.prodotto[c]]};
+                    
+                    //sul server lo gestiamo come array quindi lo passiamo come array
+                    CartService.addToCart(cart, self.userId)
+                    .then(function(data)
+                    {
+                        GrowlService.showAlert(GrowlService.ALERT_SUCCESS, "evento aggiornato con successo");
+                        self.update();
+                    })
+                    .catch(function(err)
+                    {
+                        console.log(err);    
+                    });
+                
+                }
+           }
+    };
+            
+        
+    
+    this.deleteToCart=function(id)
+    {
+        CartService.deleteToCart(self.userId,id)
+        .then(function(data)
+        {
+            self.update();
+        GrowlService.showAlert(GrowlService.ALERT_SUCCESS, "evento cancellato dal carrello");   
         })
         .catch(function(err)
         {
             console.log(err);
         });
-    }
+    };
 
     
 }])

@@ -15,7 +15,7 @@ angular.module('app.directiveModule')
            this.update=function()
            {
               var id = CurrentUserService.getUserId();
-                 self.basicUser = CurrentUserService.getBasicInfo(id);
+              self.basicUser = CurrentUserService.getBasicInfo(id);
            }
          
                 
