@@ -1,5 +1,5 @@
 angular.module('app')
-.controller("loginCtrl" ,['$http','CurrentUserService','$location', 'CartService', function ($http,CurrentUserService,$location,CartService) {
+.controller("loginCtrl" ,['$http','CurrentUserService','$location', 'CartService','$rootScope', function ($http,CurrentUserService,$location,CartService,$rootScope) {
 this.isLogged;
 var self = this;
 
@@ -27,6 +27,9 @@ var server = 'http://localhost:8080';
            console.log(User_id);
            CartService.getById(User_id)
            .then(function(cart){
+            var product=CartService.getProduct();
+            $rootScope.prodotto=product;
+			   	  	 
             $location.path("home");
 
            })

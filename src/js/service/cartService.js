@@ -1,5 +1,5 @@
 angular.module('app.serviceModule')
-.service('CartService', ['$q','$http','GrowlService', function ($q, $http, GrowlService) 
+.service('CartService', ['$q','$http','GrowlService','$rootScope', function ($q, $http, GrowlService,$rootScope) 
   {   // initialization
 	this.cart={
                 'prodotto':
@@ -45,15 +45,14 @@ angular.module('app.serviceModule')
         return deferred.promise; 	
 
     }
-    
+    this.c;
     this.getProduct=function()
-    {var c=0;
+    {self.c=0;
         for(i in self.cart.prodotto)
         {
-            console.log(self.cart.prodotto[i].properties.title);
-           c++; 
+            self.c=self.c+1; 
         }
-     return c;
+     return self.c;
     }
     this.getCounter=function(id)
     {
@@ -81,6 +80,8 @@ angular.module('app.serviceModule')
         .success(function(doc)
         {
           self.cart = doc.result;
+          var product=self.getProduct();
+          $rootScope.prodotto=product;
           deferred.resolve(doc.result);
         })
         .error(function(doc, status, headers, config) 
@@ -101,6 +102,8 @@ angular.module('app.serviceModule')
         .success(function(doc)
         {
           self.cart = doc.result;
+          var product=self.getProduct();
+          $rootScope.prodotto=product;
           deferred.resolve(doc);
         })
         .error(function(doc, status, headers, config) 

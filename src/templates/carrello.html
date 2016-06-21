@@ -13,14 +13,14 @@ aggiorna</button>
     <button class="button-style" ng-click="cartCtrl.deleteToCart(c.details.idEvento)" style=" background-color:red;"><i class="glyphicon glyphicon-trash"></i> cancella</button>
     </div>
 </div>
-<div>
-    <div ng-if="cartCtrl.somma==0">Il tuo carrello è vuoto  
+<div ng-open="cartCtrl.sum()">
+    <div ng-if="prodotto==0">Il tuo carrello è vuoto  
     <button class="button-style" ui-sref="search">
         inizia ad acquistare
         <i class="glyphicon glyphicon-shopping-search"></i>
     </button>
     </div>
-    <div ng-if="cartCtrl.somma!=0"> {{cartCtrl.somma}}
+    <div ng-if="cartCtrl.somma!=0"> costo totale: {{cartCtrl.somma}}
     </div> 
 </div>
 </div>

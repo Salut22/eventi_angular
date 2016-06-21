@@ -86,7 +86,8 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
                  CartService.getById(user._id);
 
 		   	  	 GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
-$rootScope.titolo = _islogged;		   	  	 // cookie
+                 $rootScope.titolo = _islogged;		   	  	 
+                 // cookie
 		   	  	 _setCookie();
 		   	  	 deferred.resolve(data);			  	 
 		  	 })
@@ -123,7 +124,8 @@ $rootScope.titolo = _islogged;		   	  	 // cookie
 			   	  	GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
                     $rootScope.titolo = _islogged;			   	  	 // cookie
 			   	  	 _setCookie();
-                     
+                     var product=CartService.getProduct();
+                     $rootScope.prodotto=product;
 			   	  	 deferred.resolve(true);
 		   	  	   } 
 		   	     else
@@ -211,7 +213,12 @@ $rootScope.titolo = _islogged;		   	  	 // cookie
   	{
       cookie=JSON.parse(cookie);
 	   _info = cookie;
-    CartService.getById(cookie._id);
+    CartService.getById(cookie._id)
+    .then(function(doc)
+    {
+       var product=CartService.getProduct();
+       $rootScope.prodotto=product; 
+    })
     _islogged  = true; 
        // $rootScope.$broadcast(self.USER_LOGGED_IN_EVENT);
         $rootScope.titolo = _islogged;
