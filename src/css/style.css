@@ -296,3 +296,22 @@ form:after {
   background: #666;
   color: #fff;
 }
+.button-style {
+	background: rgb(254,193,81);;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	-ms-border-radius: 30px;
+	-o-border-radius: 30px;
+	border-radius: 30px;
+	border: 1px solid #000000;
+	color: firebrick;
+	cursor: pointer;
+	float: center;
+    text-align: center;
+	font: bold 15px Helvetica, Arial, sans-serif;
+	height: 10%;
+	margin: 5px 0px 8px 3px;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+	width: 40%;
+    padding: 5px;
+}

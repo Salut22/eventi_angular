@@ -30,15 +30,12 @@ angular.module('app.serviceModule')
     {
         var deferred = $q.defer();
         var query = 'http://localhost:8080/getCart/'+id;
+        console.log(query);
 	   	$http.get(query)
         .success(function(doc)
         {
-          if(doc.result.prodotto[0] && doc.result.prodotto[0].properties  )
-              {
-                self.cart = doc.result;
-              }
-          
-          deferred.resolve(self.cart);
+            self.cart = doc.result;
+            deferred.resolve(doc.result);
         })
         .error(function(doc, status, headers, config) 
         {
@@ -84,7 +81,7 @@ angular.module('app.serviceModule')
         .success(function(doc)
         {
           self.cart = doc.result;
-          deferred.resolve(doc);
+          deferred.resolve(doc.result);
         })
         .error(function(doc, status, headers, config) 
         {

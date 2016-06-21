@@ -1,10 +1,11 @@
+
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" ui-sref="home">EVENTIme</a>
+      <a class="active navbar-brand" ui-sref="home">EVENTIme</a>
     </div>
     <ul class="nav navbar-nav">
-      
 <!--
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page1 <span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -14,16 +15,28 @@
         </ul>
       </li>
 -->
-      <li><a ui-sref="search">Cerca</a></li>
-      <li ng-if="titolo==true"><a ui-sref="carrello"><span class="glyphicon glyphicon-shopping-cart"></span> Carrello</a></li>
+      <li><a ui-sref="search"><span class="glyphicon glyphicon-search"></span>Cerca</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-if="titolo==false" >
       <li><a ui-sref="signup"><span class="glyphicon glyphicon-user"></span> Registrati</a></li>
-      <li><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a ui-sref="login"><span class="glyphicon glyphicon-log-in" style="color:green;"></span> Login</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-if="titolo==true" ng-open="navBarCtrl.update()">
         
-        <li><a ng-click="navBarCtrl.logout()"><span class="glyphicon glyphicon-user" ></span>{{navBarCtrl.basicUser.name}} </a></li>
+   <!--     <li><a ng-click="navBarCtrl.logout()"><span class="glyphicon glyphicon-user" ></span>{{navBarCtrl.basicUser.name}} </a></li>-->
+        <li class="dropdown" style="">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" style=""><span class="glyphicon glyphicon-user" ></span>  {{navBarCtrl.basicUser.nickname}}
+            <span class="caret"></span></a>
+        <ul class="dropdown-menu" style=" align-content:center ">
+          <li><a href="#" style="align-content:center"><img ng-src="http://www.immaginidivertenti.net/immagini-divertenti/scimmia-divertente.jpg"style="width: 80px; height: 80px; border: 3px solid; border-radius: 100pt;display: block center;"></a></li>
+            <li role="separator" class="divider"></li>
+          <li><a ui-sref="profilo"><span class="glyphicon glyphicon-hand-right"></span> Profilo</a></li>
+            <li><a ui-sref="carrello"><span class="glyphicon glyphicon-shopping-cart"></span> Carrello</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a ng-click="navBarCtrl.logout()" href="#"><span class="glyphicon glyphicon-log-out" style="color:red;"></span> Esci</a></li>
+
+        </ul>
+      </li>
     </ul>
   </div>
 </nav>

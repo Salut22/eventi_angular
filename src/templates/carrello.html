@@ -1,18 +1,26 @@
-
-<div class="panel panel-default" ng-repeat="c in cartCtrl.cart.prodotto" >
+<div class="content" style="width:90%">
+<div class="panel panel-default" ng-repeat="c in cartCtrl.cart.prodotto"  style=" background-color:#E2E2E2;">
+<div ng-if="c">
         <div class="panel-heading">informazioni</div>
         <div class="panel-body" >
             <input style="align:right;"type="number" ng-model="c.details.quantita"ng-change="cartCtrl.sum()" min="0"/>
             <p >{{c.properties.title}}</p>
-            <p >{{c.details.price}}</p>
-            
+            <p style="align:left;">price : {{c.details.price}} <i class="glyphicon glyphicon-euro"></i></p>
+            <p> tot: {{c.details.price*c.details.quantita}} <i class="glyphicon glyphicon-euro"></i></p>
         </div>
-    <button ng-click="cartCtrl.removeToCart(c.details.idEvento,c.details.quantita)">aggiorna</button>
-    <button ng-click="cartCtrl.deleteToCart(c.details.idEvento)">cancella</button>
-    {{c.details.price*c.details.quantita}}
+    <button class="button-style" ng-click="cartCtrl.removeToCart(c.details.idEvento,c.details.quantita)" style=" background-color:green;"><i class="glyphicon glyphicon-repeat"></i>
+aggiorna</button>
+    <button class="button-style" ng-click="cartCtrl.deleteToCart(c.details.idEvento)" style=" background-color:red;"><i class="glyphicon glyphicon-trash"></i> cancella</button>
     </div>
+</div>
 <div>
-    <div ng-if="cartCtrl.somma==0">Sono tutti eventi gratuiti</div>
-<div ng-if="cartCtrl.somma!=0"> {{cartCtrl.somma}}
-</div> 
+    <div ng-if="cartCtrl.somma==0">Il tuo carrello è vuoto  
+    <button class="button-style" ui-sref="search">
+        inizia ad acquistare
+        <i class="glyphicon glyphicon-shopping-search"></i>
+    </button>
+    </div>
+    <div ng-if="cartCtrl.somma!=0"> {{cartCtrl.somma}}
+    </div> 
+</div>
 </div>

@@ -121,7 +121,7 @@ $rootScope.titolo = _islogged;		   	  	 // cookie
                      _info.token   = data.token;
                      _islogged 	= true;
 			   	  	GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
-$rootScope.titolo = _islogged;			   	  	 // cookie
+                    $rootScope.titolo = _islogged;			   	  	 // cookie
 			   	  	 _setCookie();
                      
 			   	  	 deferred.resolve(true);
@@ -212,7 +212,7 @@ $rootScope.titolo = _islogged;			   	  	 // cookie
       cookie=JSON.parse(cookie);
 	   _info = cookie;
     CartService.getById(cookie._id);
-_islogged  = true; 
+    _islogged  = true; 
        // $rootScope.$broadcast(self.USER_LOGGED_IN_EVENT);
         $rootScope.titolo = _islogged;
         console.log(self.USER_LOGGED_IN_EVENT);

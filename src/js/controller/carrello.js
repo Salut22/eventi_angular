@@ -1,15 +1,36 @@
 angular.module('app')
 
-.controller("CartCtrl" ,['$http','CartService','CurrentUserService','GrowlService','$location', function ($http,CartService,CurrentUserService,GrowlService,$location) 
+.controller("CartCtrl" ,['$http','CartService','CurrentUserService','GrowlService','$location','$q', function ($http,CartService,CurrentUserService,GrowlService,$location,$q) 
 {
     this.cart;
     this.somma=0;
-    this.userId=CurrentUserService.getUserId();
-
+    this.userId;
     var self=this;
+//    console.log(CurrentUserService.getUserId());
+    self.userId=CurrentUserService.getUserId();
+    
+    
+    
+    
+    this.update=function()
+    {
+        console.log('update');
+        console.log(self.userId);
+        CartService.getById(self.userId)
+        .then(function(data)
+        {
+//            console.log(JSON.stringify(data));
+            self.cart=data;
+            self.sum();
+    })
+        
+        
+    }
+//    self.update();
+    
     self.cart=CartService.getAllCart();
-
-    console.log(self.cart.prodotto[0].details.quantita);
+    
+    
     
     this.sum=function()
     {
@@ -20,21 +41,10 @@ angular.module('app')
         }
         
     }
-    self.sum();
+   
     
-    this.update=function()
-    {
-        console.log('update');
-        CartService.getById(self.userId)
-        .then(function(data)
-        {
-            console.log(JSON.stringify(data));
-            self.cart=data;
-    })
-        
-        
-    }
-
+    
+//    console.log(self.cart.prodotto[0].details.quantita);
     this.removeToCart=function(id,quantita)
     {
      if(quantita==0)
