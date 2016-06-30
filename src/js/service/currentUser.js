@@ -3,7 +3,11 @@ angular.module('app.serviceModule')
 
 
 
+<<<<<<< HEAD
 .service('CurrentUserService', ['$q','$http','GrowlService','PreferitiService','$rootScope', function ($q, $http, GrowlService,PreferitiService,$rootScope) 
+=======
+.service('CurrentUserService', ['$q','$http','GrowlService','CartService','$rootScope','$localStorage', function ($q, $http, GrowlService,CartService,$rootScope,$localStorage) 
+>>>>>>> 9dea4b424c68af3c214db992327db2edb64b7f56
   {   // initialization
     var self = this;
     var _islogged  = false;
@@ -177,21 +181,25 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 		  expire.setTime(now.getTime() + (parseInt(duration) * 60000)); // duration in minutes
 		  var user 	    	   = {'_id':'', 'basic':{}};
 		  user._id 			   = _info._id;
-		  user.basic 		   = _info.basic;
-		  document.cookie = "eppoi_user" + '=' + escape(JSON.stringify(user)) + '; expires=' + expire.toGMTString() + '; path=/';
+          user.token		   = _info.token;
+		  user.basic           = _info.basic.nickname;
+		  //document.cookie = "eppoi_user" + '=' + escape(JSON.stringify(user)) + '; expires=' + expire.toGMTString() + '; path=/';
+		  $localStorage.user = "user" + '=' + escape(JSON.stringify(user)) + '; expires=' + expire.toGMTString() + '; path=/';
 		} 
 	
 	var _getCookie = function()
 		{
-          if (document.cookie.length > 0)
+            console.log('fuori');
+          if ( $localStorage.user && $localStorage.user.length > 0)
 			  {
-			    var inizio = document.cookie.indexOf('eppoi_user=');
+                  console.log('dentro');
+			    var inizio =  $localStorage.user.indexOf('user=');
 			    if (inizio != -1)
 			    {
-			      inizio = inizio + 'eppoi_user'.length + 1;
-			      var fine = document.cookie.indexOf(";",inizio);
-			      if (fine == -1) fine = document.cookie.length;
-			      var credentials = unescape(document.cookie.substring(inizio,fine));;
+			      inizio = inizio + 'user'.length + 1;
+			      var fine =  $localStorage.user.indexOf(";",inizio);
+			      if (fine == -1) fine =  $localStorage.user.length;
+			      var credentials = unescape( $localStorage.user.substring(inizio,fine));;
 			      return credentials;
 			    }else{
 			       return false;
@@ -212,8 +220,16 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
   if (cookie != false && !_islogged)
   	{
       cookie=JSON.parse(cookie);
+<<<<<<< HEAD
 	   _info = cookie;
     PreferitiService.getById(cookie._id)
+=======
+	   _info.id = cookie.id;
+       _info.basic.nickname=cookie.basic;
+       _info.token=cookie.token;
+        console.log(cookie);
+    CartService.getById(cookie._id)
+>>>>>>> 9dea4b424c68af3c214db992327db2edb64b7f56
     .then(function(doc)
     {
        var product=PreferitiService.getProduct();
@@ -223,7 +239,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
        // $rootScope.$broadcast(self.USER_LOGGED_IN_EVENT);
         $rootScope.titolo = _islogged;
         console.log(self.USER_LOGGED_IN_EVENT);
-        GrowlService.showAlert(GrowlService.ALERT_SUCCESS, _info.basic.name+' ha loggato con il cookie');
+        GrowlService.showAlert(GrowlService.ALERT_SUCCESS, _info.basic.nickname+' ha loggato con il cookie');
        
   	}		  	 		  		
 	   		  		
