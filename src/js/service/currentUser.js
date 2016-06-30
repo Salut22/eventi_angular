@@ -3,11 +3,8 @@ angular.module('app.serviceModule')
 
 
 
-<<<<<<< HEAD
-.service('CurrentUserService', ['$q','$http','GrowlService','PreferitiService','$rootScope', function ($q, $http, GrowlService,PreferitiService,$rootScope) 
-=======
-.service('CurrentUserService', ['$q','$http','GrowlService','CartService','$rootScope','$localStorage', function ($q, $http, GrowlService,CartService,$rootScope,$localStorage) 
->>>>>>> 9dea4b424c68af3c214db992327db2edb64b7f56
+.service('CurrentUserService', ['$q','$http','GrowlService','PreferitiService','$rootScope','$localStorage', function ($q, $http, GrowlService,PreferitiService,$rootScope,$localStorage) 
+
   {   // initialization
     var self = this;
     var _islogged  = false;
@@ -220,16 +217,12 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
   if (cookie != false && !_islogged)
   	{
       cookie=JSON.parse(cookie);
-<<<<<<< HEAD
-	   _info = cookie;
-    PreferitiService.getById(cookie._id)
-=======
+
 	   _info.id = cookie.id;
        _info.basic.nickname=cookie.basic;
        _info.token=cookie.token;
         console.log(cookie);
-    CartService.getById(cookie._id)
->>>>>>> 9dea4b424c68af3c214db992327db2edb64b7f56
+    PreferitiService.getById(cookie._id)
     .then(function(doc)
     {
        var product=PreferitiService.getProduct();
