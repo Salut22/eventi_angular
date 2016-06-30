@@ -1,5 +1,5 @@
 
-<div class="content" style="width:90%">
+<div class="content" style="width:90%" ng-open="detCtrl.esiste()">
     <div>
     <img id="foto" ng-src="{{detCtrl.poi.details['ph-primary']}}" style="max-height:300px; margin-bottom:7px; border-radius:30px; max-width:200px" >
     </div>
@@ -31,9 +31,12 @@
         <div class="panel-heading">descrizione</div>
         <div class="panel-body"><p id="desc"></p></div>
     </div>
-    <button class="button-style" ng-click="detCtrl.addToPreferiti()">
+    <button class="button-style" ng-click="detCtrl.addToPreferiti()"  ng-if="detCtrl.present==false">
+        Aggiungi ai preferiti 
+        <i class="glyphicon glyphicon-heart"></i>
+    </button>
+    <button class="button-style" ng-click="detCtrl.addToCart()">
         Aggiungi a carrello
         <i class="glyphicon glyphicon-shopping-cart"></i>
     </button>
-    
 </div>

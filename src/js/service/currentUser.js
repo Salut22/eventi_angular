@@ -179,8 +179,10 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 		  var user 	    	   = {'_id':'', 'basic':{}};
 		  user._id 			   = _info._id;
           user.token		   = _info.token;
-		  user.basic           = _info.basic.nickname;
-		  //document.cookie = "eppoi_user" + '=' + escape(JSON.stringify(user)) + '; expires=' + expire.toGMTString() + '; path=/';
+          if(_info.basic)
+          {
+		      user.basic           = _info.basic.nickname;
+          }//document.cookie = "eppoi_user" + '=' + escape(JSON.stringify(user)) + '; expires=' + expire.toGMTString() + '; path=/';
 		  $localStorage.user = "user" + '=' + escape(JSON.stringify(user)) + '; expires=' + expire.toGMTString() + '; path=/';
 		} 
 	
@@ -218,7 +220,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
   	{
       cookie=JSON.parse(cookie);
 
-	   _info.id = cookie.id;
+	   _info._id = cookie._id;
        _info.basic.nickname=cookie.basic;
        _info.token=cookie.token;
         console.log(cookie);

@@ -5,6 +5,7 @@ angular.module('app')
     this.poi;
     this.prezzo;
     this.userId;
+    this.present;
     var self=this;
     
     self.poi=CurrentPoiService.currentEvent();
@@ -64,15 +65,34 @@ angular.module('app')
                     }
                 }]  
             };
+        console.log(self.userId);
         PreferitiService.addToPreferiti(preferiti,self.userId)
         .then(function(data)
         {
+          GrowlService.showAlert(GrowlService.ALERT_SUCCESS, "evento aggiunto con successo nei preferiti");
           console.log('aggiunto con successo');    
         })
         .catch(function(err)
         {
+            GrowlService.showAlert(GrowlService.ALERT_ERROR, "evento non aggiunto con successo nei preferiti");
             console.log(err);    
         });
+    }
+    
+    this.esiste=function()
+    {
+        self.present=false;
+       this.all_preferiti= PreferitiService.getAllPreferiti();
+        for(p in self.all_preferiti.prodotto)
+            {
+                console.log(self.all_preferiti.prodotto[p].details.idEvento,self.poi._id);
+                if(self.all_preferiti.prodotto[p].details.idEvento == self.poi._id)
+                    {
+
+                        self.present=true;
+                    }
+            }
+       
     }
 
   

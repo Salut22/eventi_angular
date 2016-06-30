@@ -3,13 +3,11 @@
 <div ng-if="c">
         <div class="panel-heading">informazioni</div>
         <div class="panel-body" >
-            <input style="align:right;"type="number" ng-model="c.details.quantita"ng-change="cartCtrl.sum()" min="0"/>
             <p >{{c.properties.title}}</p>
             <p style="align:left;">price : {{c.details.price}} <i class="glyphicon glyphicon-euro"></i></p>
             <p> tot: {{c.details.price*c.details.quantita}} <i class="glyphicon glyphicon-euro"></i></p>
         </div>
-    <button class="button-style" ng-click="preferitoCtrl.removeToPreferito(c.details.idEvento,c.details.quantita)" style=" background-color:green;"><i class="glyphicon glyphicon-repeat"></i>
-aggiorna</button>
+    <button class="button-style" ng-click="preferitoCtrl.removeToPreferito(c.details.idEvento)"><i class="glyphicon glyphicon-heart"></i>aggiungi al carrello</button>
     <button class="button-style" ng-click="preferitoCtrl.deleteToPreferito(c.details.idEvento)" style=" background-color:red;"><i class="glyphicon glyphicon-trash"></i> cancella</button>
     </div>
 </div>
@@ -19,8 +17,5 @@ aggiorna</button>
         esplora
         <i class="glyphicon glyphicon-shopping-search"></i>
     </button>
-    </div>
-    <div ng-if="preferitoCtrl.somma!=0"> costo totale: {{preferitoCtrl.somma}}
-    </div> 
 </div>
 </div>
