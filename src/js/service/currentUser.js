@@ -157,7 +157,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
    this.setLoggedOut = function() 
    		{ 
 	   	 _resetUser();
-	   	 _setCookie(-1);  // delete the cookie
+	   	 $localStorage.$reset();  // delete the cookie
 	   $rootScope.titolo = _islogged;
         GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'logout avvenuto');
 	     };    		
@@ -182,16 +182,14 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
           if(_info.basic)
           {
 		      user.basic           = _info.basic.nickname;
-          }//document.cookie = "eppoi_user" + '=' + escape(JSON.stringify(user)) + '; expires=' + expire.toGMTString() + '; path=/';
+          }
 		  $localStorage.user = "user" + '=' + escape(JSON.stringify(user)) + '; expires=' + expire.toGMTString() + '; path=/';
 		} 
 	
 	var _getCookie = function()
 		{
-            console.log('fuori');
           if ( $localStorage.user && $localStorage.user.length > 0)
 			  {
-                  console.log('dentro');
 			    var inizio =  $localStorage.user.indexOf('user=');
 			    if (inizio != -1)
 			    {
@@ -241,27 +239,4 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
     
 }])
 
-//.run(function(CurrentUserService) {}
 .run(function(CurrentUserService) {});
-  //  console.log("porco mondo"+ self._isLogged);
-//
-//    $rootScope.$on(CurrentUserService.USER_LOGGED_IN_EVENT, function()
-//    {
-//        console.log("porcomondo 23 232");
-//    });
-//    $rootScope.$on(CurrentUserService.USER_LOGGED_OUT_EVENT, function()
-//    {
-//        console.log("porcomondo 23 232 fhidhfihfiwe");
-//    });
-//    $rootScope.$on(CurrentUserService.USER_LOGGED_IN_EVENT, function()
-//            {
-//                console.log("ziolatro");
-//                self.user= CurrentUserService.isLogged();
-//                if(self.user==true)
-//
-//                {
-//                 var id = CurrentUserService.getUserId();
-//                 self.basicUser = CurrentUserService.getBasicInfo(id);
-//                }  
-//            })
-//});

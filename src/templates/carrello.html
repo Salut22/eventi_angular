@@ -1,5 +1,5 @@
 <div class="content" style="width:90%">
-<div class="panel panel-default" ng-repeat="c in cartCtrl.preferiti.prodotto"  style=" background-color:#E2E2E2;">
+<div class="panel panel-default" ng-repeat="c in cartCtrl.cart.prodotto"  style=" background-color:#E2E2E2;">
 <div ng-if="c">
         <div class="panel-heading">informazioni</div>
         <div class="panel-body" >
@@ -8,9 +8,9 @@
             <p style="align:left;">price : {{c.details.price}} <i class="glyphicon glyphicon-euro"></i></p>
             <p> tot: {{c.details.price*c.details.quantita}} <i class="glyphicon glyphicon-euro"></i></p>
         </div>
-    <button class="button-style" ng-click="cartCtrl.removeToCart(c.details.idEvento,c.details.quantita)" style=" background-color:green;"><i class="glyphicon glyphicon-repeat"></i>
+    <button class="button-style" ng-click="cartCtrl.upCart(c.details.quantita,c.details.idEvento)" style=" background-color:green;"><i class="glyphicon glyphicon-repeat"></i>
 aggiorna</button>
-    <button class="button-style" ng-click="cartCtrl.deleteToCart(c.details.idEvento)" style=" background-color:red;"><i class="glyphicon glyphicon-trash"></i> cancella</button>
+    <button class="button-style" ng-click="cartCtrl.delete(c.details.idEvento)" style=" background-color:red;"><i class="glyphicon glyphicon-trash"></i> cancella</button>
     </div>
 </div>
 <div ng-open="cartCtrl.sum()">
@@ -21,7 +21,7 @@ aggiorna</button>
     </button>
     </div>
     <div ng-if="cartCtrl.somma!=0"> costo totale: {{cartCtrl.somma}}
-    <button class="button-style" ng-click="cartCtrl.paga(c.details.idEvento,c.details.quantita)"><i class="glyphicon glyphicon-ok"></i>
+    <button class="button-style" ng-click="cartCtrl.paga()"><i class="glyphicon glyphicon-ok"></i>
 Paga</button>
     </div> 
 </div>

@@ -30,7 +30,6 @@ angular.module('app.serviceModule')
     {
         var deferred = $q.defer();
         var query = 'http://localhost:8080/getPreferiti/'+id;
-        console.log(query);
 	   	$http.get(query)
         .success(function(doc)
         {
@@ -48,7 +47,6 @@ angular.module('app.serviceModule')
     this.c;
     this.getProduct=function()
     {self.c=0;
-     console.log(self);
         for(i in self.preferiti.prodotto)
         {
             self.c=self.c+1; 
@@ -74,9 +72,7 @@ angular.module('app.serviceModule')
     this.addToPreferiti=function(preferiti,userId)
     {
         var deferred = $q.defer();
-        console.log('id '+userId+' preferiti '+JSON.stringify(preferiti));
         var query = 'http://localhost:8080/addEvent';
-        console.log(preferiti);
 	   	$http.post(query, {preferiti:preferiti.prodotto, userId:userId})
         .success(function(doc)
         {
@@ -96,9 +92,7 @@ angular.module('app.serviceModule')
     this.deleteToPreferiti=function(userId, eventId)
     {
         var deferred = $q.defer();
-        console.log('id '+userId+' eventId '+eventId);
         var query = 'http://localhost:8080/removeEvent';
-        console.log(query);
 	   	$http.post(query, {userId:userId, eventId:eventId})
         .success(function(doc)
         {

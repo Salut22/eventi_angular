@@ -3,11 +3,9 @@ angular.module('app')
 .controller("CartCtrl" ,['$http','CartService','CurrentUserService','GrowlService','$location','$q', function ($http, CartService,CurrentUserService,GrowlService,$location,$q) 
 {
     
-    this.preferiti;
+    this.cart;
     this.somma=0;
-    this.userId;
     var self=this;
-//    console.log(CurrentUserService.getUserId());
     self.userId=CurrentUserService.getUserId();
     
     
@@ -16,91 +14,39 @@ angular.module('app')
     this.update=function()
     {
         console.log('update');
-        console.log(self.userId);
-        PreferitiService.getById(self.userId)
-        .then(function(data)
-        {
-//            console.log(JSON.stringify(data));
-            self.preferiti=data;
-            self.sum();
-    })
-        
-        
+    self.cart=CartService.getCart();
+    self.sum();
     }
-//    self.update();
+    //self.update();
     
-    self.preferiti=PreferitiService.getAllPreferiti();
+    self.cart=CartService.getCart();
     
-    
-    
-    this.sum=function()
+    this.paga=function()
+    {
+        CartService.reset();
+        self.update();
+    }
+    this.upCart=function(quantita,id)
+    {
+        CartService.updateCart(quantita,id);
+        self.update();
+    }
+    this.delete=function(id)
+    {
+      CartService.deleteCart(id);
+      self.update();
+      
+    }
+  this.sum=function()
     {
         self.somma=0;
-        for(c in self.preferiti.prodotto)
+        for(c in self.cart.prodotto)
         {
-          self.somma+=(self.preferiti.prodotto[c].details.quantita*self.preferiti.prodotto[c].details.price); 
+          self.somma+=(self.cart.prodotto[c].details.quantita*self.cart.prodotto[c].details.price); 
         }
         
     }
    
-    
-    
-//    console.log(self.preferiti.prodotto[0].details.quantita);
-    this.removeToPreferito=function(id,quantita)
-    {
-     if(quantita==0)
-        {
-
-            PreferitiService.deleteToPreferiti(self.userId, id)
-            .then(function(data)
-            {
-                self.update();
-                GrowlService.showAlert(GrowlService.ALERT_INFO, "evento eliminato dai preferiti");
-                
-            })
-            .catch(function(err)
-            {
-              console.log(err);  
-            })
-         }
-          for(c in self.preferiti.prodotto)
-          {
-              if(id == self.preferiti.prodotto[c].details.idEvento)
-                {
-                    self.preferiti.prodotto[c].details.quantita=quantita;
-                    preferiti={'prodotto':[self.preferiti.prodotto[c]]};
-                    
-                    //sul server lo gestiamo come array quindi lo passiamo come array
-                    PreferitiService.addToPreferiti(preferiti, self.userId)
-                    .then(function(data)
-                    {
-                        GrowlService.showAlert(GrowlService.ALERT_SUCCESS, "evento aggiornato con successo");
-                        self.update();
-                    })
-                    .catch(function(err)
-                    {
-                        console.log(err);    
-                    });
-                
-                }
-           }
-    };
-            
-        
-    
-    this.deleteToPreferito=function(id)
-    {
-        PreferitiService.deleteToPreferiti(self.userId,id)
-        .then(function(data)
-        {
-            self.update();
-        GrowlService.showAlert(GrowlService.ALERT_SUCCESS, "evento cancellato dal carrello");   
-        })
-        .catch(function(err)
-        {
-            console.log(err);
-        });
-    };
     
     
 }])
