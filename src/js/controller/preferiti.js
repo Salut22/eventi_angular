@@ -1,95 +1,70 @@
 angular.module('app')
 
-.controller("PreferitoCtrl" ,['$http','PreferitiService','CurrentUserService','GrowlService','$location','$q', function ($http,PreferitiService,CurrentUserService,GrowlService,$location,$q) 
+.controller("PreferitoCtrl" ,['$http','PreferitiService','CurrentUserService','GrowlService','$location','$q','CartService', function ($http,PreferitiService,CurrentUserService,GrowlService,$location,$q,CartService) 
 {
     this.preferiti;
-    this.somma=0;
-    this.userId;
     var self=this;
-//    console.log(CurrentUserService.getUserId());
-    self.userId=CurrentUserService.getUserId();
-    
-    
     
     
     this.update=function()
     {
         console.log('update');
-        console.log(self.userId);
-        PreferitiService.getById(self.userId)
+        var token = CurrentUserService.getToken();
+        PreferitiService.getById(token)
         .then(function(data)
         {
-//            console.log(JSON.stringify(data));
             self.preferiti=data;
             self.sum();
     })
         
         
     }
-//    self.update();
     
     self.preferiti=PreferitiService.getAllPreferiti();
     
     
-    
-    this.sum=function()
-    {
-        self.somma=0;
-        for(c in self.preferiti.prodotto)
-        {
-          self.somma+=(self.preferiti.prodotto[c].details.quantita*self.preferiti.prodotto[c].details.price); 
-        }
-        
-    }
+
    
     
     
-//    console.log(self.preferiti.prodotto[0].details.quantita);
-    this.removeToPreferito=function(id,quantita)
+    this.addCart=function(id)
     {
-     if(quantita==0)
+        var pref=self.preferiti;
+       for(p in pref.prodotto)
         {
+            if(pref.prodotto[p].details.idEvento==id)
+            {
+            var preferiti=
+             {
+                'prodotto':
+                [{
+                    'properties':
+                    {
+                      'title'   :pref.prodotto[p].properties.title,
+                      'dateFrom':pref.prodotto[p].properties.dateFrom,
+                      'dateTo'  :pref.prodotto[p].properties.dateTo
+                    },
+                    'details':
+                    {
+                      'idEvento':pref.prodotto[p]._id,
+                      'photo'   :pref.prodotto[p].details['ph-primary'],
+                      'price'   :pref.prodotto[p].details.price,
+                      'quantita': 1
+                    }
+                }]  
+             };
+               CartService.setCart(preferiti);
+            }
+        }
+     
 
-            PreferitiService.deleteToPreferiti(self.userId, id)
-            .then(function(data)
-            {
-                self.update();
-                GrowlService.showAlert(GrowlService.ALERT_INFO, "evento eliminato dai preferiti");
-                
-            })
-            .catch(function(err)
-            {
-              console.log(err);  
-            })
-         }
-          for(c in self.preferiti.prodotto)
-          {
-              if(id == self.preferiti.prodotto[c].details.idEvento)
-                {
-                    self.preferiti.prodotto[c].details.quantita=quantita;
-                    preferiti={'prodotto':[self.preferiti.prodotto[c]]};
-                    
-                    //sul server lo gestiamo come array quindi lo passiamo come array
-                    PreferitiService.addToPreferiti(preferiti, self.userId)
-                    .then(function(data)
-                    {
-                        GrowlService.showAlert(GrowlService.ALERT_SUCCESS, "evento aggiornato con successo");
-                        self.update();
-                    })
-                    .catch(function(err)
-                    {
-                        console.log(err);    
-                    });
-                
-                }
-           }
-    };
-            
+    }
         
     
     this.deleteToPreferito=function(id)
     {
-        PreferitiService.deleteToPreferiti(self.userId,id)
+       var token = CurrentUserService.getToken();
+        PreferitiService.deleteToPreferiti(token,id)
         .then(function(data)
         {
             self.update();

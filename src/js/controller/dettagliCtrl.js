@@ -4,12 +4,10 @@ angular.module('app')
 {
     this.poi;
     this.prezzo;
-    this.userId;
     this.present;
     var self=this;
     
     self.poi=CurrentPoiService.currentEvent();
-    self.userId = CurrentUserService.getUserId();
     
         
     
@@ -65,8 +63,9 @@ angular.module('app')
                     }
                 }]  
             };
-        console.log(self.userId);
-        PreferitiService.addToPreferiti(preferiti,self.userId)
+        var token = CurrentUserService.getToken();
+        PreferitiService.addToPreferiti(preferiti,token)
+        
         .then(function(data)
         {
           GrowlService.showAlert(GrowlService.ALERT_SUCCESS, "evento aggiunto con successo nei preferiti");
@@ -94,6 +93,7 @@ angular.module('app')
             }
        
     }
+    
     this.addToCart=function()
     {
         
@@ -119,16 +119,7 @@ angular.module('app')
                 }]  
             };
         CartService.setCart(preferiti);
-//        .then(function(data)
-//        {
-//          GrowlService.showAlert(GrowlService.ALERT_SUCCESS, "evento aggiunto con successo nei preferiti");
-//          console.log('aggiunto con successo');    
-//        })
-//        .catch(function(err)
-//        {
-//            GrowlService.showAlert(GrowlService.ALERT_ERROR, "evento non aggiunto con successo nei preferiti");
-//            console.log(err);    
-//        });
+      
     }
 
   

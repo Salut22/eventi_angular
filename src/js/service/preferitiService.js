@@ -73,7 +73,7 @@ angular.module('app.serviceModule')
     {
         var deferred = $q.defer();
         var query = 'http://localhost:8080/addEvent';
-	   	$http.post(query, {preferiti:preferiti.prodotto, userId:userId})
+	   	$http.post(query+'?token='+userId,{preferiti:preferiti.prodotto})
         .success(function(doc)
         {
           self.preferiti = doc.result;
@@ -93,7 +93,7 @@ angular.module('app.serviceModule')
     {
         var deferred = $q.defer();
         var query = 'http://localhost:8080/removeEvent';
-	   	$http.post(query, {userId:userId, eventId:eventId})
+        $http.post(query+'?token='+userId, {userId:userId, eventId:eventId})        
         .success(function(doc)
         {
           self.preferiti = doc.result;

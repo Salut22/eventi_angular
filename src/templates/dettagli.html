@@ -31,7 +31,8 @@
         <div class="panel-heading">descrizione</div>
         <div class="panel-body"><p id="desc"></p></div>
     </div>
-    <button class="button-style" ng-click="detCtrl.addToPreferiti()"  ng-if="detCtrl.present==false">
+    <button class="button-style" ng-click="detCtrl.addToPreferiti()"				    	  
+            ng-class="titolo==false ? disabled : active" ng-if="detCtrl.present==false">
         Aggiungi ai preferiti 
         <i class="glyphicon glyphicon-heart"></i>
     </button>

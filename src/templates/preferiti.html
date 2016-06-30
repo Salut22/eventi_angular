@@ -7,7 +7,7 @@
             <p style="align:left;">price : {{c.details.price}} <i class="glyphicon glyphicon-euro"></i></p>
             <p> tot: {{c.details.price*c.details.quantita}} <i class="glyphicon glyphicon-euro"></i></p>
         </div>
-    <button class="button-style" ng-click="preferitoCtrl.removeToPreferito(c.details.idEvento)"><i class="glyphicon glyphicon-heart"></i>aggiungi al carrello</button>
+    <button class="button-style" ng-click="preferitoCtrl.addCart(c.details.idEvento)"><i class="glyphicon glyphicon-shopping-cart"></i>aggiungi al carrello</button>
     <button class="button-style" ng-click="preferitoCtrl.deleteToPreferito(c.details.idEvento)" style=" background-color:red;"><i class="glyphicon glyphicon-trash"></i> cancella</button>
     </div>
 </div>
