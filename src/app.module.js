@@ -2,7 +2,7 @@
 angular.module('app.directiveModule',[])
 angular.module('app.agucomplete',['angucomplete-alt'])
 angular.module('app.serviceModule',[])
-angular.module('app', ['ui.router','app.serviceModule','app.agucomplete','app.directiveModule'])
+angular.module('app', ['ui.router','app.serviceModule','app.agucomplete','app.directiveModule','ngStorage'])
 .config([
 '$stateProvider',
 '$urlRouterProvider',
