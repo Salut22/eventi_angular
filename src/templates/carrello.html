@@ -21,6 +21,8 @@ aggiorna</button>
     </button>
     </div>
     <div ng-if="cartCtrl.somma!=0"> costo totale: {{cartCtrl.somma}}
+    <button class="button-style" ng-click="cartCtrl.paga(c.details.idEvento,c.details.quantita)"><i class="glyphicon glyphicon-ok"></i>
+Paga</button>
     </div> 
 </div>
 </div>

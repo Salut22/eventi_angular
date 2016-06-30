@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller("dettagliCtrl" ,['$http','CurrentPoiService','CurrentUserService','PreferitiService','GrowlService', function ($http,CurrentPoiService,CurrentUserService,PreferitiService,GrowlService) 
+.controller("dettagliCtrl" ,['$http','CurrentPoiService','CurrentUserService','PreferitiService','GrowlService','CartService', function ($http,CurrentPoiService,CurrentUserService,PreferitiService,GrowlService,CartService) 
 {
     this.poi;
     this.prezzo;
@@ -93,6 +93,42 @@ angular.module('app')
                     }
             }
        
+    }
+    this.addToCart=function()
+    {
+        
+        var poi    = self.poi;
+        
+        var preferiti=
+            {
+                'prodotto':
+                [{
+                    'properties':
+                    {
+                      'title'   :poi.properties.title,
+                      'dateFrom':poi.properties.dateFrom,
+                      'dateTo'  :poi.properties.dateTo
+                    },
+                    'details':
+                    {
+                      'idEvento':poi._id,
+                      'photo'   :poi.details['ph-primary'],
+                      'price'   :self.prezzo,
+                      'quantita': 1
+                    }
+                }]  
+            };
+        CartService.setCart(preferiti);
+//        .then(function(data)
+//        {
+//          GrowlService.showAlert(GrowlService.ALERT_SUCCESS, "evento aggiunto con successo nei preferiti");
+//          console.log('aggiunto con successo');    
+//        })
+//        .catch(function(err)
+//        {
+//            GrowlService.showAlert(GrowlService.ALERT_ERROR, "evento non aggiunto con successo nei preferiti");
+//            console.log(err);    
+//        });
     }
 
   
