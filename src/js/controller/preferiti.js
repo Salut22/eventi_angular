@@ -1,8 +1,8 @@
 angular.module('app')
 
-.controller("CartCtrl" ,['$http','CartService','CurrentUserService','GrowlService','$location','$q', function ($http,CartService,CurrentUserService,GrowlService,$location,$q) 
+.controller("PreferitoCtrl" ,['$http','PreferitiService','CurrentUserService','GrowlService','$location','$q', function ($http,PreferitiService,CurrentUserService,GrowlService,$location,$q) 
 {
-    this.cart;
+    this.preferiti;
     this.somma=0;
     this.userId;
     var self=this;
@@ -16,11 +16,11 @@ angular.module('app')
     {
         console.log('update');
         console.log(self.userId);
-        CartService.getById(self.userId)
+        PreferitiService.getById(self.userId)
         .then(function(data)
         {
 //            console.log(JSON.stringify(data));
-            self.cart=data;
+            self.preferiti=data;
             self.sum();
     })
         
@@ -28,33 +28,33 @@ angular.module('app')
     }
 //    self.update();
     
-    self.cart=CartService.getAllCart();
+    self.preferiti=PreferitiService.getAllPreferiti();
     
     
     
     this.sum=function()
     {
         self.somma=0;
-        for(c in self.cart.prodotto)
+        for(c in self.preferiti.prodotto)
         {
-          self.somma+=(self.cart.prodotto[c].details.quantita*self.cart.prodotto[c].details.price); 
+          self.somma+=(self.preferiti.prodotto[c].details.quantita*self.preferiti.prodotto[c].details.price); 
         }
         
     }
    
     
     
-//    console.log(self.cart.prodotto[0].details.quantita);
-    this.removeToCart=function(id,quantita)
+//    console.log(self.preferiti.prodotto[0].details.quantita);
+    this.removeToPreferito=function(id,quantita)
     {
      if(quantita==0)
         {
 
-            CartService.deleteToCart(self.userId, id)
+            PreferitiService.deleteToPreferiti(self.userId, id)
             .then(function(data)
             {
                 self.update();
-                GrowlService.showAlert(GrowlService.ALERT_INFO, "evento eliminato dal carrello");
+                GrowlService.showAlert(GrowlService.ALERT_INFO, "evento eliminato dai preferiti");
                 
             })
             .catch(function(err)
@@ -62,15 +62,15 @@ angular.module('app')
               console.log(err);  
             })
          }
-          for(c in self.cart.prodotto)
+          for(c in self.preferiti.prodotto)
           {
-              if(id == self.cart.prodotto[c].details.idEvento)
+              if(id == self.preferiti.prodotto[c].details.idEvento)
                 {
-                    self.cart.prodotto[c].details.quantita=quantita;
-                    cart={'prodotto':[self.cart.prodotto[c]]};
+                    self.preferiti.prodotto[c].details.quantita=quantita;
+                    preferiti={'prodotto':[self.preferiti.prodotto[c]]};
                     
                     //sul server lo gestiamo come array quindi lo passiamo come array
-                    CartService.addToCart(cart, self.userId)
+                    PreferitiService.addToPreferiti(preferiti, self.userId)
                     .then(function(data)
                     {
                         GrowlService.showAlert(GrowlService.ALERT_SUCCESS, "evento aggiornato con successo");
@@ -87,9 +87,9 @@ angular.module('app')
             
         
     
-    this.deleteToCart=function(id)
+    this.deleteToPreferito=function(id)
     {
-        CartService.deleteToCart(self.userId,id)
+        PreferitiService.deleteToPreferiti(self.userId,id)
         .then(function(data)
         {
             self.update();
@@ -101,5 +101,6 @@ angular.module('app')
         });
     };
 
+    
     
 }])

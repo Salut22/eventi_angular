@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller("dettagliCtrl" ,['$http','CurrentPoiService','CurrentUserService','CartService','GrowlService', function ($http,CurrentPoiService,CurrentUserService,CartService,GrowlService) 
+.controller("dettagliCtrl" ,['$http','CurrentPoiService','CurrentUserService','PreferitiService','GrowlService', function ($http,CurrentPoiService,CurrentUserService,PreferitiService,GrowlService) 
 {
     this.poi;
     this.prezzo;
@@ -36,16 +36,16 @@ angular.module('app')
     {$("#desc").html(self.poi.details.desc);}
     
     
-    this.addToCart=function()
+    this.addToPreferiti=function()
     {
         
         var poi    = self.poi;
-        var quantita= CartService.getCounter(poi._id);
+        var quantita= PreferitiService.getCounter(poi._id);
         console.log('sono la quantita '+quantita);
             
         quantita++;
         
-        var cart=
+        var preferiti=
             {
                 'prodotto':
                 [{
@@ -64,7 +64,7 @@ angular.module('app')
                     }
                 }]  
             };
-        CartService.addToCart(cart,self.userId)
+        PreferitiService.addToPreferiti(preferiti,self.userId)
         .then(function(data)
         {
           console.log('aggiunto con successo');    

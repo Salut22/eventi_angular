@@ -52,6 +52,12 @@ function($stateProvider, $urlRouterProvider,$httpProvider) {
      controller: 'CartCtrl as cartCtrl'
 
     })
+.state('preferito', {
+     url: '/preferiti',
+     templateUrl: 'templates/preferiti.html',
+     controller: 'PreferitoCtrl as preferitoCtrl'
+
+    })
 
   $urlRouterProvider.otherwise('home');
   

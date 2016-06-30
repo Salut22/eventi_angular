@@ -1,7 +1,7 @@
 angular.module('app.serviceModule')
-.service('CartService', ['$q','$http','GrowlService','$rootScope', function ($q, $http, GrowlService,$rootScope) 
+.service('PreferitiService', ['$q','$http','GrowlService','$rootScope', function ($q, $http, GrowlService,$rootScope) 
   {   // initialization
-	this.cart={
+	this.preferiti={
                 'prodotto':
                 [{
                     'properties':
@@ -21,20 +21,20 @@ angular.module('app.serviceModule')
                 };
     var self = this;
       
-      this.getAllCart=function()
+      this.getAllPreferiti=function()
       {
-          return self.cart;
+          return self.preferiti;
       }
       
     this.getById=function(id)
     {
         var deferred = $q.defer();
-        var query = 'http://localhost:8080/getCart/'+id;
+        var query = 'http://localhost:8080/getPreferiti/'+id;
         console.log(query);
 	   	$http.get(query)
         .success(function(doc)
         {
-            self.cart = doc.result;
+            self.preferiti = doc.result;
             deferred.resolve(doc.result);
         })
         .error(function(doc, status, headers, config) 
@@ -48,7 +48,8 @@ angular.module('app.serviceModule')
     this.c;
     this.getProduct=function()
     {self.c=0;
-        for(i in self.cart.prodotto)
+     console.log(self);
+        for(i in self.preferiti.prodotto)
         {
             self.c=self.c+1; 
         }
@@ -57,12 +58,12 @@ angular.module('app.serviceModule')
     this.getCounter=function(id)
     {
         
-        for (i in self.cart.prodotto)
+        for (i in self.preferiti.prodotto)
         {
 
-            if (id ==self.cart.prodotto[i].details.idEvento)
+            if (id ==self.preferiti.prodotto[i].details.idEvento)
             {
-                return self.cart.prodotto[i].details.quantita;
+                return self.preferiti.prodotto[i].details.quantita;
             }
                 
         }
@@ -70,16 +71,16 @@ angular.module('app.serviceModule')
         return quantita;
 
     }
-    this.addToCart=function(cart,userId)
+    this.addToPreferiti=function(preferiti,userId)
     {
         var deferred = $q.defer();
-        console.log('id '+userId+' cart '+JSON.stringify(cart));
+        console.log('id '+userId+' preferiti '+JSON.stringify(preferiti));
         var query = 'http://localhost:8080/addEvent';
-        console.log(cart);
-	   	$http.post(query, {cart:cart.prodotto, userId:userId})
+        console.log(preferiti);
+	   	$http.post(query, {preferiti:preferiti.prodotto, userId:userId})
         .success(function(doc)
         {
-          self.cart = doc.result;
+          self.preferiti = doc.result;
           var product=self.getProduct();
           $rootScope.prodotto=product;
           deferred.resolve(doc.result);
@@ -92,7 +93,7 @@ angular.module('app.serviceModule')
         return deferred.promise;
     }
     
-    this.deleteToCart=function(userId, eventId)
+    this.deleteToPreferiti=function(userId, eventId)
     {
         var deferred = $q.defer();
         console.log('id '+userId+' eventId '+eventId);
@@ -101,7 +102,7 @@ angular.module('app.serviceModule')
 	   	$http.post(query, {userId:userId, eventId:eventId})
         .success(function(doc)
         {
-          self.cart = doc.result;
+          self.preferiti = doc.result;
           var product=self.getProduct();
           $rootScope.prodotto=product;
           deferred.resolve(doc);
@@ -115,4 +116,4 @@ angular.module('app.serviceModule')
     } 
 }])
 
-.run(function(CartService) {});
+.run(function(PreferitiService) {});
