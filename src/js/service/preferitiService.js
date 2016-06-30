@@ -44,9 +44,11 @@ angular.module('app.serviceModule')
         return deferred.promise; 	
 
     }
+    
     this.c;
     this.getProduct=function()
-    {self.c=0;
+    {
+        self.c=0;
         for(i in self.preferiti.prodotto)
         {
             self.c=self.c+1; 

@@ -14,8 +14,7 @@ angular.module('app')
         .then(function(data)
         {
             self.preferiti=data;
-            self.sum();
-    })
+        })
         
         
     }
@@ -67,7 +66,8 @@ angular.module('app')
         PreferitiService.deleteToPreferiti(token,id)
         .then(function(data)
         {
-            self.update();
+            console.log('leleellleelwew');
+        self.update();
         GrowlService.showAlert(GrowlService.ALERT_SUCCESS, "evento cancellato dal carrello");   
         })
         .catch(function(err)

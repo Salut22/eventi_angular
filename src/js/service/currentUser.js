@@ -222,7 +222,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
        _info.basic.nickname=cookie.basic;
        _info.token=cookie.token;
         console.log(cookie);
-    PreferitiService.getById(cookie._id)
+    PreferitiService.getById(cookie.token)
     .then(function(doc)
     {
        var product=PreferitiService.getProduct();
