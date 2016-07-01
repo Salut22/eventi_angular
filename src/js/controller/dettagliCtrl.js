@@ -25,7 +25,7 @@ angular.module('app')
     }
     else
     {
-        self.prezzo=0;
+        self.prezzo=5;
         $("#price").html("l'evento è gratuito");
     }
     
@@ -40,7 +40,6 @@ angular.module('app')
         
         var poi    = self.poi;
         var quantita= PreferitiService.getCounter(poi._id);
-        console.log('sono la quantita '+quantita);
             
         quantita++;
         
@@ -68,13 +67,11 @@ angular.module('app')
         
         .then(function(data)
         {
-          GrowlService.showAlert(GrowlService.ALERT_SUCCESS, "evento aggiunto con successo nei preferiti");
-          console.log('aggiunto con successo');    
+          GrowlService.showAlert(GrowlService.ALERT_SUCCESS, "evento aggiunto nei preferiti");
         })
         .catch(function(err)
         {
-            GrowlService.showAlert(GrowlService.ALERT_ERROR, "evento non aggiunto con successo nei preferiti");
-            console.log(err);    
+            GrowlService.showAlert(GrowlService.ALERT_ERROR, "evento non aggiunto nei preferiti");
         });
     }
     
@@ -84,7 +81,6 @@ angular.module('app')
        this.all_preferiti= PreferitiService.getAllPreferiti();
         for(p in self.all_preferiti.prodotto)
             {
-                console.log(self.all_preferiti.prodotto[p].details.idEvento,self.poi._id);
                 if(self.all_preferiti.prodotto[p].details.idEvento == self.poi._id)
                     {
 
@@ -119,6 +115,7 @@ angular.module('app')
                 }]  
             };
         CartService.setCart(preferiti);
+        GrowlService.showAlert(GrowlService.ALERT_SUCCESS,'Evento aggiunto al carrello');
       
     }
 

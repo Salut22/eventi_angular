@@ -13,23 +13,20 @@ var server = 'http://localhost:8080';
             'username' :this.username,
             'password' :this.password
         };
-        console.log(JSON.stringify(user));
-       CurrentUserService.setLoggedIn(user)
+        CurrentUserService.setLoggedIn(user)
        .then(function(data)
         {
-           console.log(JSON.stringify(data));
            return;
        })
        .catch(function(err){console.log(err)})
        .then(function (data){
            
-           var User_id = CurrentUserService.getUserId();
-           console.log(User_id);
-           PreferitiService.getById(User_id)
+          var token=CurrentUserService.getToken();
+           PreferitiService.getById(token)
            .then(function(cart){
-            var product=PreferitiService.getProduct();
-            $rootScope.prodotto=product;
-			   	  	 
+            var preferiti=PreferitiService.getProduct();
+            $rootScope.preferiti=preferiti;     
+  	  	 
             $location.path("home");
 
            })

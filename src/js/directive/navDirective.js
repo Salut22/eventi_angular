@@ -11,12 +11,6 @@ angular.module('app.directiveModule')
             this.basicUser;
             this.user;
             var self = this;
-
-           this.update=function()
-           {
-              var id = CurrentUserService.getUserId();
-              self.basicUser = CurrentUserService.getBasicInfo(id);
-           }
          
                 
             this.logout=function()

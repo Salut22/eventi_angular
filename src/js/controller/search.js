@@ -48,7 +48,6 @@ angular.module('app')
       $http.post('http://localhost:8080/getEvent',self.location)
       .success(function(data)
       {
-          console.log(data.result);
           CurrentPoiService.fromJson(data.result);
           $location.path("eventi");
 

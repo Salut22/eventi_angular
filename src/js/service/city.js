@@ -8,7 +8,6 @@ angular.module('app.agucomplete',['angucomplete-alt'])
     
       this.localSearchProvincia = function(str,regione)
     {
-          console.log(regione.title);
 	  var matches = [];
       regione.description.province.forEach(function(provincia) 
         {

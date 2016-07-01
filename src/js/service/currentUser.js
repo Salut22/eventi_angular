@@ -41,7 +41,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 	     _info = {};
     	}
     	
-    	
+    	/*
     this.requireLogin = function()
 		{
 		 if (!self.isLogged())
@@ -52,7 +52,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 		 	}
 		 else
 		 	{return true;}
-		 }
+		 }*/
    
    this.getToken=function()
    {
@@ -60,16 +60,8 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
    }
     this.isLogged = function() 
    		{return _islogged; };            
+   
     
-    this.getUserId = function()
-     {
-	    return _info._id;
-     }
-    
-    this.getBasicInfo = function()
-      {
-		 return _info.basic;  
-      }
   
  
        	
@@ -87,7 +79,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
                  PreferitiService.getById(user._id);
 
 		   	  	 GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
-                 $rootScope.titolo = _islogged;		   	  	 
+                 $rootScope.isLogged = _islogged;		   	  	 
                  // cookie
 		   	  	 _setCookie();
 		   	  	 deferred.resolve(data);			  	 
@@ -123,7 +115,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
                      _info.token   = data.token;
                      _islogged 	= true;
 			   	  	GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
-                    $rootScope.titolo = _islogged;			   	  	 // cookie
+                    $rootScope.isLogged = _islogged;			   	  	 // cookie
 			   	  	 _setCookie();
                      var product=PreferitiService.getProduct();
                      $rootScope.prodotto=product;
@@ -158,7 +150,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
    		{ 
 	   	 _resetUser();
 	   	 $localStorage.$reset();  // delete the cookie
-	   $rootScope.titolo = _islogged;
+	   $rootScope.isLogged = _islogged;
         GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'logout avvenuto');
 	     };    		
 	
@@ -177,7 +169,6 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 		  var now = new Date();
 		  expire.setTime(now.getTime() + (parseInt(duration) * 60000)); // duration in minutes
 		  var user 	    	   = {'_id':'', 'basic':{}};
-		  user._id 			   = _info._id;
           user.token		   = _info.token;
           if(_info.basic)
           {
@@ -206,7 +197,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 		}   
 		
 		
-	        $rootScope.titolo = _islogged;
+	        $rootScope.isLogged = _islogged;
 	
 		
 /* ========================================
@@ -218,20 +209,18 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
   	{
       cookie=JSON.parse(cookie);
 
-	   _info._id = cookie._id;
        _info.basic.nickname=cookie.basic;
        _info.token=cookie.token;
-        console.log(cookie);
     PreferitiService.getById(cookie.token)
     .then(function(doc)
     {
-       var product=PreferitiService.getProduct();
-       $rootScope.prodotto=product; 
+       var preferiti=PreferitiService.getProduct();
+       $rootScope.preferiti=preferiti;
     })
     _islogged  = true; 
-       // $rootScope.$broadcast(self.USER_LOGGED_IN_EVENT);
-        $rootScope.titolo = _islogged;
-        console.log(self.USER_LOGGED_IN_EVENT);
+        $rootScope.isLogged = _islogged;
+        $rootScope.nickname = _info.basic.nickname;
+
         GrowlService.showAlert(GrowlService.ALERT_SUCCESS, _info.basic.nickname+' ha loggato con il cookie');
        
   	}		  	 		  		

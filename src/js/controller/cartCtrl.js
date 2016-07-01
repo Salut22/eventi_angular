@@ -6,34 +6,35 @@ angular.module('app')
     this.cart;
     this.somma=0;
     var self=this;
-    self.userId=CurrentUserService.getUserId();
     
     
     
     
     this.update=function()
     {
-        console.log('update');
-    self.cart=CartService.getCart();
-    self.sum();
+     self.cart=CartService.getCart();
+     self.sum();
+
     }
-    //self.update();
     
     self.cart=CartService.getCart();
     
     this.paga=function()
     {
         CartService.reset();
+     GrowlService.showAlert(GrowlService.ALERT_SUCCESS,'Pagamento avvenuto con successo');
         self.update();
     }
     this.upCart=function(quantita,id)
     {
         CartService.updateCart(quantita,id);
+        GrowlService.showAlert(GrowlService.ALERT_SUCCESS,'Aggiornamento delle quantità avvenuto con successo');
         self.update();
     }
     this.delete=function(id)
     {
       CartService.deleteCart(id);
+      GrowlService.showAlert(GrowlService.ALERT_WARNING,'Evento cancellato con successo');
       self.update();
       
     }

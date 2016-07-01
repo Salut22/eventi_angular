@@ -8,7 +8,6 @@ angular.module('app')
     
     this.update=function()
     {
-        console.log('update');
         var token = CurrentUserService.getToken();
         PreferitiService.getById(token)
         .then(function(data)
@@ -53,6 +52,7 @@ angular.module('app')
                 }]  
              };
                CartService.setCart(preferiti);
+               GrowlService.showAlert(GrowlService.ALERT_SUCCESS,'Evento aggiunto al carrello');
             }
         }
      
@@ -66,9 +66,8 @@ angular.module('app')
         PreferitiService.deleteToPreferiti(token,id)
         .then(function(data)
         {
-            console.log('leleellleelwew');
         self.update();
-        GrowlService.showAlert(GrowlService.ALERT_SUCCESS, "evento cancellato dal carrello");   
+        GrowlService.showAlert(GrowlService.ALERT_WARNING, "evento cancellato dal carrello");   
         })
         .catch(function(err)
         {

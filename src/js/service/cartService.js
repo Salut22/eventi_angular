@@ -15,7 +15,8 @@ angular.module('app.serviceModule')
     {
         $localStorage.cart={};        
         this.cart.prodotto=[];
-
+        var cart =self.getCartCounter();
+        $rootScope.carrello=cart;
     }
     
     this.updateCart=function(quantita,id)
@@ -30,6 +31,17 @@ angular.module('app.serviceModule')
             }  
         $localStorage.cart={}
         _setCartCookie();
+    }
+    
+    this.c;
+    this.getCartCounter=function()
+    {
+        self.c=0;
+        for(i in self.cart.prodotto)
+        {
+            self.c=self.c+1; 
+        }
+     return self.c;
     }
     
     this.deleteCart=function(id)
@@ -68,6 +80,9 @@ angular.module('app.serviceModule')
             $localStorage.cart={}        
         }
             _setCartCookie();
+        var cart =self.getCartCounter();
+        $rootScope.carrello=cart;
+
     }
     
     var _setCartCookie=function(duration)
@@ -101,7 +116,8 @@ var cockie=_getCookie();
     {
     var cockie=JSON.parse(cockie);
     self.cart.prodotto=cockie;
-    console.log(JSON.stringify(cockie,null,2));
+    var cart =self.getCartCounter();
+    $rootScope.carrello=cart;
     }
 }
 ])

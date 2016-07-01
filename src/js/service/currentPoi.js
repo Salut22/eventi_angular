@@ -24,7 +24,6 @@ angular.module('app.serviceModule')
     }
     this.getById=function(id)
     {
-        console.log('id '+id);
         for(p in self.pois)
             {
                 if(id==self.pois[p]._id)

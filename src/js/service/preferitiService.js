@@ -26,10 +26,10 @@ angular.module('app.serviceModule')
           return self.preferiti;
       }
       
-    this.getById=function(id)
+    this.getById=function(token)
     {
         var deferred = $q.defer();
-        var query = 'http://localhost:8080/getPreferiti/'+id;
+        var query = 'http://localhost:8080/getPreferiti/'+token;
 	   	$http.get(query)
         .success(function(doc)
         {
@@ -79,8 +79,8 @@ angular.module('app.serviceModule')
         .success(function(doc)
         {
           self.preferiti = doc.result;
-          var product=self.getProduct();
-          $rootScope.prodotto=product;
+          var preferiti=self.getProduct();
+          $rootScope.preferiti=preferiti;
           deferred.resolve(doc.result);
         })
         .error(function(doc, status, headers, config) 
@@ -99,8 +99,8 @@ angular.module('app.serviceModule')
         .success(function(doc)
         {
           self.preferiti = doc.result;
-          var product=self.getProduct();
-          $rootScope.prodotto=product;
+          var preferiti=self.getProduct();
+          $rootScope.preferiti=preferiti;
           deferred.resolve(doc);
         })
         .error(function(doc, status, headers, config) 
