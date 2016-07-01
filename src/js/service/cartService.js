@@ -53,8 +53,9 @@ angular.module('app.serviceModule')
                       self.cart.prodotto.splice(p,1);
                     }
             }  
-         $localStorage.cart={}        
           _setCartCookie();
+        var cart =self.getCartCounter();
+        $rootScope.carrello=cart;
     }
     
     this.setCart=function(carrello)
