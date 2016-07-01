@@ -44,8 +44,8 @@ angular.module('app')
                     },
                     'details':
                     {
-                      'idEvento':pref.prodotto[p]._id,
                       'photo'   :pref.prodotto[p].details.photo,
+                      'idEvento':pref.prodotto[p].details.idEvento,
                       'price'   :pref.prodotto[p].details.price,
                       'quantita': 1
                     }
