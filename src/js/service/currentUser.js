@@ -75,13 +75,14 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 			  	 var user      = data.result;
 		   	  	 _info._id     = user._id;
 		   	  	 _info.basic   = user.basic;
-		   	  	 _islogged 	= true;
-                 PreferitiService.getById(user._id);
+		   	  	 //_islogged 	= true;
+                 //PreferitiService.getById(user._id);
 
-		   	  	 GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
-                 $rootScope.isLogged = _islogged;		   	  	 
+		   	  	 //GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
+                 $rootScope.isLogged = _islogged;
+                 //PreferitiService.getById(token)
                  // cookie
-		   	  	 _setCookie();
+		   	  	 //_setCookie();
 		   	  	 deferred.resolve(data);			  	 
 		  	 })
 	     .error(function(data, status, headers, config) 
@@ -118,6 +119,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 			   	  	GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
                     $rootScope.isLogged = _islogged;			   	  	 // cookie
 			   	  	 _setCookie();
+//                     $localStorage.cart={'cart='};        
 			   	  	 deferred.resolve(true);
 		   	  	   } 
 		   	     else
