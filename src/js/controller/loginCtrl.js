@@ -1,9 +1,8 @@
 angular.module('app')
-.controller("loginCtrl" ,['$http','CurrentUserService','$location', 'PreferitiService','$rootScope', function ($http,CurrentUserService,$location,PreferitiService,$rootScope) {
+.controller("loginCtrl" ,['CurrentUserService','$location','PreferitiService','$rootScope','$localStorage', function (CurrentUserService,$location,PreferitiService,$rootScope,$localStorage) {
 this.isLogged;
 var self = this;
 
-var server = 'http://localhost:8080';
     
     this.save = function()
     {  
@@ -25,9 +24,11 @@ var server = 'http://localhost:8080';
            console.log(token);
             PreferitiService.getById(token)
            .then(function(cart){
+            var prodotto={};
+            $localStorage.cart = "cart" + '=' + escape(JSON.stringify(prodotto));
             var preferiti=PreferitiService.getProduct();
             $rootScope.preferiti=preferiti;     
-  	  	 
+  	  	    
             $location.path("home");
 
            })
