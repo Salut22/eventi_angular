@@ -113,6 +113,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 			   	  	 _info._id     = user._id;
 			   	  	 _info.basic   = user.basic;
                      _info.token   = data.token;
+                       $rootScope.nickname = _info.basic.nickname
                      _islogged 	= true;
 			   	  	GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
                     $rootScope.isLogged = _islogged;			   	  	 // cookie
@@ -168,7 +169,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 		  var expire = new Date();
 		  var now = new Date();
 		  expire.setTime(now.getTime() + (parseInt(duration) * 60000)); // duration in minutes
-		  var user 	    	   = {'_id':'', 'basic':{}};
+		  var user 	    	   = {'basic':{}};
           user.token		   = _info.token;
           if(_info.basic)
           {
