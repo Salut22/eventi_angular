@@ -1,12 +1,17 @@
 <div class="content" style="width:90%">
 <div class="panel panel-default" ng-repeat="c in preferitoCtrl.preferiti.prodotto"  style=" background-color:#E2E2E2;">
 <div ng-if="c">
-        <div class="panel-heading">informazioni</div>
+    <div class="panel-heading">informazioni</div>
+    <div class="row">
+        <div class="col-md-5">
+        <img ng-src={{c.details.photo}} style="width: 120px; height:120px; border: 3px solid; border-radius: 100px; position:relative;float:left; align-content:center; padding:3px; position:relative; margin-left:18%">
+      </div>
         <div class="panel-body" >
             <p >{{c.properties.title}}</p>
             <p style="align:left;">price : {{c.details.price}} <i class="glyphicon glyphicon-euro"></i></p>
             <p> tot: {{c.details.price*c.details.quantita}} <i class="glyphicon glyphicon-euro"></i></p>
         </div>
+    </div>
     <button class="button-style" ng-click="preferitoCtrl.addCart(c.details.idEvento)"><i class="glyphicon glyphicon-shopping-cart"></i>aggiungi al carrello</button>
     <button class="button-style" ng-click="preferitoCtrl.deleteToPreferito(c.details.idEvento)" style=" background-color:red;"><i class="glyphicon glyphicon-trash"></i> cancella</button>
     </div>

@@ -1,21 +1,29 @@
+<style>
+.button-style2
+{
+width: 20%;
+float: right;
+}
+</style>
+
 <div class="content" style="width:90%">
 <div class="panel panel-default container-fluid" ng-repeat="c in cartCtrl.cart.prodotto"  style=" background-color:#E2E2E2;">
 <div ng-if="c">
   <div class="panel-heading">informazioni</div>
   <div class="row">
-      <div class="col-md-4">
-        <img ng-src={{c.details.photo}}>
+      <div class="col-md-5">
+        <img ng-src={{c.details.photo}} style="width: 120px; height:120px; border: 3px solid; border-radius: 100px; position:relative;float:left; align-content:center; padding:3px; position:relative; margin-left:18%">
       </div>
-        <div class="panel-default col-md-4" style="float-left" >
+        <div class="panel-default col-md-5" style="align-content:center" >
             <input style="align:right;"type="number" ng-model="c.details.quantita"ng-change="cartCtrl.sum()" min="0"/>
             <p >{{c.properties.title}}</p>
             <p style="align:left;">price : {{c.details.price}} <i class="glyphicon glyphicon-euro"></i></p>
             <p> tot: {{c.details.price*c.details.quantita}} <i class="glyphicon glyphicon-euro"></i></p>
         </div>
     </div>
-    <button class="button-style" ng-click="cartCtrl.upCart(c.details.quantita,c.details.idEvento)" style=" background-color:green;"><i class="glyphicon glyphicon-repeat"></i>
+    <button class="button-style button-style2" ng-click="cartCtrl.upCart(c.details.quantita,c.details.idEvento)" style=" background-color:green;"><i class="glyphicon glyphicon-repeat"></i>
 aggiorna</button>
-    <button class="button-style" ng-click="cartCtrl.delete(c.details.idEvento)" style=" background-color:red;"><i class="glyphicon glyphicon-trash"></i> cancella</button>
+    <button class="button-style button-style2" ng-click="cartCtrl.delete(c.details.idEvento)" style=" background-color:red;"><i class="glyphicon glyphicon-trash"></i> cancella</button>
     </div>
 </div>
 <div ng-open="cartCtrl.sum()">
