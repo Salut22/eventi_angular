@@ -10,6 +10,7 @@ angular.module('app.directiveModule')
 	 	{
             this.basicUser;
             this.user;
+            this.img;
             var self = this;
          
                 

@@ -1,23 +1,33 @@
 angular.module('app')
-.controller('adminCtrl', [ '$q', '$http','$location', function( $q, $http, $location){
-/*var server = 'http://localhost:8080';
+.controller('adminCtrl', [ '$q', '$http','$location','CurrentUserService','GrowlService', function( $q, $http, $location,CurrentUserService,GrowlService){
+
+this.res;
+this.load;
+var token=CurrentUserService.getToken();
+var self=this;
+var server = 'http://localhost:8080';
 var url=server+"/admin/validate";
-$http.post(url)
+$http.post(url+'?token='+token)
     .then(function(doc)
     {
+      console.log(doc.data.result)
        if(doc.data.result==true)
-        {console.log("Sei amministratore puoi procedere"+JSON.stringify(doc.data.token))}
+        {
+         console.log("Sei amministratore puoi procedere ")
+         GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'Sei amministratore puoi procedere');
+
+        }
         else
         {
+          GrowlService.showAlert(GrowlService.ALERT_ERROR, 'non sei amministratore non puoi procedere');
+
             $location.path('home');
         }
     });  
-*/
+
     
     
-    this.res;
-    this.load;
-    var self=this;
+   
     
     this.carica=function()
     {
