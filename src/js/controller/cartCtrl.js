@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller("CartCtrl" ,['$http','CartService','CurrentUserService','GrowlService','$location','$q', function ($http, CartService,CurrentUserService,GrowlService,$location,$q) 
+.controller("CartCtrl" ,['$http','CartService','CurrentUserService','GrowlService','$location','$q','$timeout', function ($http, CartService,CurrentUserService,GrowlService,$location,$q,$timeout) 
 {
     
     this.cart;
@@ -18,7 +18,7 @@ angular.module('app')
     }
     
     self.cart=CartService.getCart();
-    
+    $timeout(10000);
     this.paga=function()
     {
         CartService.reset();
