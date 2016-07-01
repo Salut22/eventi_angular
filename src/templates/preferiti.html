@@ -11,8 +11,9 @@
     <button class="button-style" ng-click="preferitoCtrl.deleteToPreferito(c.details.idEvento)" style=" background-color:red;"><i class="glyphicon glyphicon-trash"></i> cancella</button>
     </div>
 </div>
-<div ng-open="preferitoCtrl.sum()">
-    <div ng-if="prodotto==0">I tuoi preferiti sono vuoti  
+<div >
+    <div ng-model="preferiti" ng-if="preferiti==0">
+        I tuoi preferiti sono vuoti  
     <button class="button-style" ui-sref="search">
         esplora
         <i class="glyphicon glyphicon-shopping-search"></i>

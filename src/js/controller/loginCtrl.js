@@ -22,7 +22,8 @@ var server = 'http://localhost:8080';
        .then(function (data){
            
           var token=CurrentUserService.getToken();
-           PreferitiService.getById(token)
+           console.log(token);
+            PreferitiService.getById(token)
            .then(function(cart){
             var preferiti=PreferitiService.getProduct();
             $rootScope.preferiti=preferiti;     

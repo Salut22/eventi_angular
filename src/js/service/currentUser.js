@@ -118,8 +118,6 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 			   	  	GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
                     $rootScope.isLogged = _islogged;			   	  	 // cookie
 			   	  	 _setCookie();
-                     var product=PreferitiService.getProduct();
-                     $rootScope.prodotto=product;
 			   	  	 deferred.resolve(true);
 		   	  	   } 
 		   	     else
