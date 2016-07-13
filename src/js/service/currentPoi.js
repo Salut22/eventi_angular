@@ -7,6 +7,7 @@ angular.module('app.serviceModule')
     this.pois=[]
     this.poi;
     var self=this;
+    
     this.fromJson=function(json)
     {
         for(j in json)
@@ -14,14 +15,18 @@ angular.module('app.serviceModule')
             self.pois.push(json[j]);
         }
     }
+    
+    
     this.all_pois=function()
     {
         return self.pois;
     }
+    
     this.currentEvent=function()
     {
         return self.poi;
     }
+    
     this.getById=function(id)
     {
         for(p in self.pois)

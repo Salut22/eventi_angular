@@ -19,13 +19,11 @@ angular.module('app')
     $("#phone").html('telefono '+self.poi.details.contact.phone);
     if(self.poi.details.price)
     {
-        //self.prezzo=self.poi.details.price.prc_info;
-        self.prezzo=50;
+        self.prezzo=self.poi.details.price.prc_info;
         $("#price").html(self.poi.details.price.prc_info);
     }
     else
     {
-        self.prezzo=5;
         $("#price").html("l'evento è gratuito");
     }
     
@@ -39,9 +37,8 @@ angular.module('app')
     {
         
         var poi    = self.poi;
-        var quantita= PreferitiService.getCounter(poi._id);
+        var quantita= 0;
             
-        quantita++;
         
         var preferiti=
             {
@@ -63,8 +60,8 @@ angular.module('app')
                 }]  
             };
         var token = CurrentUserService.getToken();
-        PreferitiService.addToPreferiti(preferiti,token)
         
+        PreferitiService.addToPreferiti(preferiti,token)
         .then(function(data)
         {
           GrowlService.showAlert(GrowlService.ALERT_SUCCESS, "evento aggiunto nei preferiti");

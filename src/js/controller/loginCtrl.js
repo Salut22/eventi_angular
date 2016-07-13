@@ -13,17 +13,12 @@ var self = this;
             'password' :this.password
         };
         CurrentUserService.setLoggedIn(user)
-       .then(function(data)
+       .then(function (data)
         {
-           return;
-       })
-       .catch(function(err){console.log(err)})
-       .then(function (data){
-           
-          var token=CurrentUserService.getToken();
-           console.log(token);
+            var token=CurrentUserService.getToken();
+            console.log(token);
             PreferitiService.getById(token)
-           .then(function(cart){
+         .then(function(cart){
             var prodotto={};
             $localStorage.cart = "cart" + '=' + escape(JSON.stringify(prodotto));
             var preferiti=PreferitiService.getProduct();

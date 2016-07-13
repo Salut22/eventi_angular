@@ -55,7 +55,7 @@ angular.module('app.serviceModule')
         }
      return self.c;
     }
-    this.getCounter=function(id)
+   /* this.getCounter=function(id)
     {
         
         for (i in self.preferiti.prodotto)
@@ -71,6 +71,7 @@ angular.module('app.serviceModule')
         return quantita;
 
     }
+    */
     this.addToPreferiti=function(preferiti,userId)
     {
         var deferred = $q.defer();
@@ -95,7 +96,7 @@ angular.module('app.serviceModule')
     {
         var deferred = $q.defer();
         var query = 'http://localhost:8080/removeEvent';
-        $http.post(query+'?token='+userId, {userId:userId, eventId:eventId})        
+        $http.post(query+'?token='+userId, {/*userId:userId, */eventId:eventId})        
         .success(function(doc)
         {
           self.preferiti = doc.result;

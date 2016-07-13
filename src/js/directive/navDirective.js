@@ -8,11 +8,6 @@ angular.module('app.directiveModule')
 	controller: ['CurrentUserService', '$rootScope',
 	             function (CurrentUserService, $rootScope) 
 	 	{
-            this.basicUser;
-            this.user;
-            this.img;
-            var self = this;
-         
                 
             this.logout=function()
             {

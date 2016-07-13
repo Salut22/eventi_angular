@@ -3,7 +3,7 @@ angular.module('app.serviceModule')
 
 
 
-.service('CurrentUserService', ['$q','$http','GrowlService','PreferitiService','$rootScope','$localStorage', function ($q, $http, GrowlService,PreferitiService,$rootScope,$localStorage) 
+.service('CurrentUserService', ['$q','$http','GrowlService','PreferitiService','$rootScope','$localStorage','CartService', function ($q, $http, GrowlService,PreferitiService,$rootScope,$localStorage,CartService) 
 
   {   // initialization
     var self = this;
@@ -16,16 +16,6 @@ angular.module('app.serviceModule')
     var cookie; // initialated at the bottom of the page
 
 
-/* ========================================
-    EVENTS FIRED
-================================================*/
-this.USER_LOGGED_IN_EVENT    = "USER_LOGGED_IN_EVENT";
-this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
-
-
-   	
- 
- // AT THE BOTTOM, THERE IS THE CALL TO _getCookie() FOR THE INITIALIZATION
 
  
  
@@ -78,7 +68,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 		   	  	 //_islogged 	= true;
                  //PreferitiService.getById(user._id);
 
-		   	  	 //GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
+		   	  	 GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'Registrazione avvenuta con successo');
                  $rootScope.isLogged = _islogged;
                  //PreferitiService.getById(token)
                  // cookie
@@ -88,8 +78,8 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 	     .error(function(data, status, headers, config) 
 			     {
 				  _resetUser();
-				  var msg = 'Registrazione fallita <br>' + JSON.stringify(data);
-				 GrowlService.showAlert(GrowlService.ALERT_ERROR, msg);
+				  var msg = 'Registrazione fallita <br>' + JSON.stringify(data.error);
+				 GrowlService.showAlert(GrowlService.ALERT_ERROR, 'email o nickname già presenti');
 				  deferred.reject(false);
 			     }
 			    );		  	 
@@ -132,6 +122,7 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 		  	 })
 	     .error(function(data, status, headers, config) 
 			     {
+			   	     GrowlService.showAlert(GrowlService.ALERT_ERROR, data.msg);
 				  _resetUser();
 				  deferred.reject({'error':data, 'status':status});
 			     }
@@ -152,6 +143,8 @@ this.USER_LOGGED_OUT_EVENT   = "USER_LOGGED_OUT_EVENT";
 	   	 _resetUser();
 	   	 $localStorage.$reset();  // delete the cookie
 	   $rootScope.isLogged = _islogged;
+       CartService.reset();
+       
         GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'logout avvenuto');
 	     };    		
 	

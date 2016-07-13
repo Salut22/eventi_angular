@@ -1,10 +1,18 @@
 angular.module('app.serviceModule')
 .service('CartService', ['$q','$http','GrowlService','$rootScope','$localStorage', function ($q, $http, GrowlService,$rootScope,$localStorage) 
 {
+
     this.cart={};
     this.exist;
     var self=this;
     self.cart.prodotto=[];
+    
+    this.reset= function()
+    {
+        self.cart={};
+        self.cart.prodotto=[];
+        console.log('reset');
+    }
     
     this.getCart=function()
     {
@@ -73,6 +81,7 @@ angular.module('app.serviceModule')
         
                 if(self.exist==false)
                 {
+                    console.log(self.cart.prodotto);
                     self.cart.prodotto.push(carrello.prodotto[0]);
                 }
         
@@ -88,11 +97,11 @@ angular.module('app.serviceModule')
     
     var _setCartCookie=function(duration)
     {
-        var expire = new Date();
+       /* var expire = new Date();
 		  var now = new Date();
 		  expire.setTime(now.getTime() + (parseInt(duration) * 60000)); // duration in minutes
-          
-          $localStorage.cart = "cart" + '=' + escape(JSON.stringify(self.cart.prodotto)) + '; expires=' + expire.toGMTString() + '; path=/';
+         */ 
+          $localStorage.cart = "cart" + '=' + escape(JSON.stringify(self.cart.prodotto)) /*+ '; expires=' + expire.toGMTString() + '; path=/'*/;
     }
 var _getCookie = function()
 		{
@@ -113,13 +122,13 @@ var _getCookie = function()
 	     return false;											
 		}   
 var cockie=_getCookie();
-    if(cockie!=false)
+if(cockie== true && cockie!='{}')
     {
     var cockie=JSON.parse(cockie);
     self.cart.prodotto=cockie;
     var cart =self.getCartCounter();
     $rootScope.carrello=cart;
     }
-}
+  }
 ])
 .run(function(CartService) {});
