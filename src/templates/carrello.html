@@ -16,10 +16,10 @@ float: right;
       <div class="col-md-5">
         <img ng-src={{c.details.photo}} style="width: 120px; height:120px; border: 3px solid; border-radius: 100px; position:relative;float:left; align-content:center; padding:3px; position:relative; margin-left:18%;margin-bottom:4%">
       </div>
-       <p style="float:left;margin-top:10px">price : {{c.details.price}} <i class="glyphicon glyphicon-euro"></i></p>
+       <p style="float:left;margin-top:10px">price : {{c.details.price}},00 <i class="glyphicon glyphicon-euro"></i></p>
         <div class="panel-default" style="float:right">
             <input style="margin-top:20%"type="number" ng-model="c.details.quantita"ng-change="cartCtrl.sum()" min="0"/>
-            <p style="margin-top:20%"> tot: {{c.details.price*c.details.quantita}} <i class="glyphicon glyphicon-euro"></i></p>
+            <p style="margin-top:20%"> tot: {{c.details.price*c.details.quantita}},00 <i class="glyphicon glyphicon-euro"></i></p>
 
         </div>
     </div>
@@ -35,7 +35,7 @@ aggiorna</button>
         <i class="glyphicon glyphicon-shopping-search"></i>
     </button>
     </div>
-    <div ng-if="cartCtrl.somma!=0"> costo totale: {{cartCtrl.somma}}
+    <div ng-if="cartCtrl.somma!=0"> costo totale: {{cartCtrl.somma}},00 <i class="glyphicon glyphicon-euro"></i>
     <button class="button-style" ng-click="cartCtrl.paga()"><i class="glyphicon glyphicon-ok"></i>
 Paga</button>
     </div> 

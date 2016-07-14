@@ -1,5 +1,5 @@
 angular.module('app')
-.controller('searchCtrl',['$http','CityService','CurrentPoiService','$location',  function($http,CityService,CurrentPoiService,$location)
+.controller('searchCtrl',['$http','CityService','CurrentPoiService','$location','GrowlService', function($http,CityService,CurrentPoiService,$location,GrowlService)
 { 
     this.regione;
     this.provincia=[];
@@ -10,9 +10,10 @@ angular.module('app')
     this.da;
     this.a;
     
+    
     this.lista_regioni=CityService.lista();
     var self=this;
-    
+ 
     this.localSearchProvincia = function(str)
     {
         self.provincia=[];
@@ -44,6 +45,11 @@ angular.module('app')
         'regione'   :self.regione.title.toLowerCase(),    
         'provincia' :self.provincia.description.code,    
         'comune'    :self.comune.title.toLowerCase()
+      }
+      if(self.da>self.a)
+      {
+        GrowlService.showAlert(GrowlService.ALERT_ERROR, 'La data di fine evento deve essere minore della data di inizio evento cujò');
+          return;
       }
       $http.post('http://localhost:8080/getEvent',self.location)
       .success(function(data)

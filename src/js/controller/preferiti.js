@@ -67,7 +67,7 @@ angular.module('app')
         .then(function(data)
         {
         self.update();
-        GrowlService.showAlert(GrowlService.ALERT_WARNING, "evento cancellato dal carrello");   
+        GrowlService.showAlert(GrowlService.ALERT_WARNING, "evento cancellato dai preferiti");   
         })
         .catch(function(err)
         {

@@ -104,12 +104,11 @@ angular.module('app.serviceModule')
 			   	  	 _info._id     = user._id;
 			   	  	 _info.basic   = user.basic;
                      _info.token   = data.token;
-                       $rootScope.nickname = _info.basic.nickname
+                     $rootScope.nickname = _info.basic.nickname
                      _islogged 	= true;
-			   	  	GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
-                    $rootScope.isLogged = _islogged;			   	  	 // cookie
+			   	  	 GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'login avvenuto');
+                     $rootScope.isLogged = _islogged;			   	  	 // cookie
 			   	  	 _setCookie();
-//                     $localStorage.cart={'cart='};        
 			   	  	 deferred.resolve(true);
 		   	  	   } 
 		   	     else
@@ -142,11 +141,10 @@ angular.module('app.serviceModule')
    		{ 
 	   	 _resetUser();
 	   	 $localStorage.$reset();  // delete the cookie
-	   $rootScope.isLogged = _islogged;
-       CartService.reset();
-       
-        GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'logout avvenuto');
-	     };    		
+	     $rootScope.isLogged = _islogged;
+         CartService.reset();
+         GrowlService.showAlert(GrowlService.ALERT_SUCCESS, 'logout avvenuto');
+	    };    		
 	
 	
     	
@@ -161,14 +159,13 @@ angular.module('app.serviceModule')
 		{
 		  var expire = new Date();
 		  var now = new Date();
-		  expire.setTime(now.getTime() + (parseInt(duration) * 60000)); // duration in minutes
 		  var user 	    	   = {'basic':{}};
           user.token		   = _info.token;
           if(_info.basic)
           {
 		      user.basic           = _info.basic.nickname;
           }
-		  $localStorage.user = "user" + '=' + escape(JSON.stringify(user)) + '; expires=' + expire.toGMTString() + '; path=/';
+		  $localStorage.user = "user" + '=' + escape(JSON.stringify(user));
 		} 
 	
 	var _getCookie = function()

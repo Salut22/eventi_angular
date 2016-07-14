@@ -9,7 +9,7 @@ angular.module('app.serviceModule')
     var self=this;
     
     this.fromJson=function(json)
-    {
+    { self.pois=[];
         for(j in json)
         {
             self.pois.push(json[j]);

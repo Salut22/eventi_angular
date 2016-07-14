@@ -1,5 +1,5 @@
 angular.module('app.serviceModule')
-.service('PreferitiService', ['$q','$http','GrowlService','$rootScope', function ($q, $http, GrowlService,$rootScope) 
+.service('PreferitiService', ['$q','$http','$rootScope', function ($q, $http,$rootScope) 
   {   // initialization
 	this.preferiti={
                 'prodotto':

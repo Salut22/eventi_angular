@@ -122,11 +122,16 @@ var _getCookie = function()
 	     return false;											
 		}   
 var cockie=_getCookie();
-if(cockie== true && cockie!='{}')
+if(cockie!=false && cockie!='{}')
     {
     var cockie=JSON.parse(cockie);
     self.cart.prodotto=cockie;
     var cart =self.getCartCounter();
+    $rootScope.carrello=cart;
+    }
+    else
+    {
+         var cart =self.getCartCounter();
     $rootScope.carrello=cart;
     }
   }
